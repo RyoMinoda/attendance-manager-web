@@ -14,19 +14,22 @@ const TopBarButton = ({ props }: { props: TopBarButtonProps }) => {
     const uiParameter = useContext(UiParametersContext);
     const { FontSize } = uiParameter;
     const { height, width, text, icon } = props;
-    const innerMarginTB = height * 0.12;
+    const innerMarginTB = height * 0.15;
     const buttonHeight = height - 2 * innerMarginTB;
-    const iconHeight = buttonHeight * 3 / 5;
+    const iconHeight = buttonHeight * 3.6 / 5;
+    const iconTopPadding = iconHeight * 0.21 / 8;
     const textHeight = buttonHeight - iconHeight;
     return (
         <Box sx={{ width, height }}>
-            <Button sx={{ width, height: buttonHeight, color: 'white', marginTop: innerMarginTB / 8 }}>
+            <Button sx={{ width, height: buttonHeight, color: 'white', marginTop: innerMarginTB / 8, overflow: 'hidden' }}>
                 <Grid container sx={{ width, height: buttonHeight }}>
-                    <Grid item sx={{ width, height: iconHeight }}>
+                    <Grid item sx={{ width, height: iconHeight, paddingTop: iconTopPadding }}>
                         {icon}
                     </Grid>
                     <Grid item sx={{ width, height: textHeight }}>
-                        <Typography sx={{ fontSize: FontSize.small }}>{text}</Typography>
+                        <Typography sx={{ fontSize: FontSize.small, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {text}
+                        </Typography>
                     </Grid>
                 </Grid>
             </Button>

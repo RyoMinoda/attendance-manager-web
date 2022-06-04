@@ -1,9 +1,9 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PathDictionary } from './models/utils/PathType';
+import { PathComponentDictionary } from './models/utils/PathType';
 
 const App = () => {
-  const dictionary = PathDictionary.toArray();
+  const dictionary = PathComponentDictionary.toArray();
   return (
     <BrowserRouter>
       <Routes>

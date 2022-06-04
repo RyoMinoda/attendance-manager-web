@@ -1,12 +1,13 @@
 body {
   margin: 0;
-  overflow: 'hidden';
+  overflow-x: hidden;
+  overflow-y: scroll;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 code {
@@ -15,5 +16,5 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 1px;
 }

@@ -35,7 +35,7 @@ const MemberBar = () => {
     }
     const gridItems: Array<GridColumnItem> = [
         { column: topLogoXs, totalColumn, children: <TopLogoButton props={topLogoButtonProps} /> },
-        { column: totalColumn - topLogoXs - textButtonXs * 2, totalColumn, children: <></> },
+        { column: totalColumn - topLogoXs - textButtonXs * 2 - 0.2, totalColumn, children: <></> },
         { column: textButtonXs, totalColumn, children: <TopBarButton props={signInButtonProps} /> },
         { column: textButtonXs, totalColumn, children: <TopBarButton props={signUpButtonProps} /> }
     ]

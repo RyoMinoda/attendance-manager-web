@@ -4,7 +4,7 @@ import SignIn from "../../pages/SignIn";
 import SignUp from "../../pages/SignUp";
 import { Dictionary, KeyValue } from "../../utils/Dictionary";
 
-const Path = {
+export const Path = {
     ServiceTop: "",
     SignIn: "sign_in",
     SignUp: "sign_up",
@@ -19,11 +19,18 @@ const Path = {
 
 export const PathTypes = Object.keys(Path);
 
-const keyValues : Array<KeyValue<JSX.Element>> = [
+const componentKeyValues : Array<KeyValue<JSX.Element>> = [
     { key: Path.ServiceTop, value: <ServiceTop /> },
     { key: Path.DashboardTop, value: <DashboardTop /> },
     { key: Path.SignIn, value: <SignIn /> },
     { key: Path.SignUp, value: <SignUp /> },
 ];
 
-export const PathDictionary = new Dictionary(keyValues);
+export const PathComponentDictionary = new Dictionary(componentKeyValues);
+
+const textKeyValues: Array<KeyValue<string>> = [
+    { key: Path.DashboardTop, value: "Home" },
+    { key: Path.CreateGroup, value: "Create Group" }
+];
+
+export const PathTextDictionary = new Dictionary(textKeyValues);

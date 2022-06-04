@@ -7,9 +7,9 @@ export type FontSize = {
 }
 
 export const defaultFontSize: FontSize = {
-    large: 22,
-    larger: 18,
-    normal: 14,
+    large: 17,
+    larger: 14,
+    normal: 13,
     smaller: 12,
     small: 9
 }

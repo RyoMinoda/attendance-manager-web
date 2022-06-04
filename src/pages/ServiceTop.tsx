@@ -1,40 +1,36 @@
 import { Box, Grid } from "@mui/material";
-import { useContext } from "react";
-import TimelineServiceCard, { TimelineServiceCardProps } from "../components/molecules/service_card/TimelineServiceCard";
-import GuestLayout from "../components/templates/GuestLayout";
-import { UiParametersContext } from "../models/utils/UiParametersContext";
+import TimeScheduleServiceCard, { TimeScheduleServiceCardProps } from "../components/molecules/service_card/TimeScheduleServiceCard";
+import GuestLayout, { GuestLayoutProps } from "../components/templates/GuestLayout";
 import { useWindowSize } from "../models/utils/WindowLayout";
 
 
 const ServiceTop = () => {
     const WindowLayout = useWindowSize();
-    const uiParameters = useContext(UiParametersContext);
-    const { Palette } = uiParameters;
     const mainWindowWidth = 900;
     const outerMarginLR = (WindowLayout.width - mainWindowWidth) / 8 / 2;
-    const mainWinodowHeight = WindowLayout.height - uiParameters.Layout.TopBarHeight;
     const titleHeight = 45;
     const innerMarginTB = 5;
     const innerMarginLR = mainWindowWidth * 0.05 / 8;
     const innerWidth = mainWindowWidth - 2 * innerMarginLR * 8;
-    const timelineCardHeight = 350;
-    const timelineCardProps: TimelineServiceCardProps = {
+    const timeScheduleCardHeight = 360;
+    const timeScheduleCardProps: TimeScheduleServiceCardProps = {
         marginTB: innerMarginTB,
         marginLR: innerMarginLR,
         width: innerWidth,
-        height: timelineCardHeight,
+        height: timeScheduleCardHeight,
         titleHeight,
     };
+    const layoutProps: GuestLayoutProps = {
+        height: timeScheduleCardHeight
+    }
     return (
-        <GuestLayout>
+        <GuestLayout props={layoutProps}>
             <Box 
                 marginLeft={outerMarginLR} 
-                marginRight={outerMarginLR} 
-                width={mainWindowWidth} 
-                height={mainWinodowHeight}>
+                marginRight={outerMarginLR}>
                 <Grid container width={mainWindowWidth}>
-                    <Grid item width={mainWindowWidth}>
-                        <TimelineServiceCard props={timelineCardProps} />
+                    <Grid item width={mainWindowWidth} height={timeScheduleCardHeight + titleHeight}>
+                        <TimeScheduleServiceCard props={timeScheduleCardProps} />
                     </Grid>
                     <Grid item width={mainWindowWidth}>
 
