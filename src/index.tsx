@@ -1,3 +1,4 @@
+import "./tsyringe-register";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -8,6 +9,7 @@ import { defaultUiParameters, UiParametersContext } from './models/utils/UiParam
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <UiParametersContext.Provider value={defaultUiParameters}>

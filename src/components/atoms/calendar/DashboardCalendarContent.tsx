@@ -15,7 +15,6 @@ const DashboardCalendarContent = ({ props }: { props: DashboardCalendarContentPr
     const daysMap = GetCalendarMap();
     const calendarDates = GetCalendarDateObjects(date);
     const rowCount = calendarDates[calendarDates.length - 1].row;
-    const lastDate = calendarDates[calendarDates.length - 1].date;
     return (
         <Grid container width={width} height={height}>
             {daysMap
@@ -36,6 +35,7 @@ const DashboardCalendarContent = ({ props }: { props: DashboardCalendarContentPr
                                     <Button sx={{ 
                                         width:  weekHeight, 
                                         height: weekHeight, 
+                                        paddingBottom: 0.2,
                                         minHeight: 0, 
                                         minWidth: 0, 
                                         color: Palette.text.primary, 

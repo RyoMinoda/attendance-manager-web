@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DashboardTopContent, { DashboardTopContentProps } from "../components/organisms/DashboardTopContent";
 import MemberLayout, { MemberLayoutProps } from "../components/templates/MemberLayout";
 import { Path } from "../models/utils/PathType";
@@ -14,6 +14,7 @@ const DashboardTop = () => {
     const dashboardProps: DashboardTopContentProps = {
         setEntireHeight
     }
+
     return (
         <MemberLayout props={memberLayoutProps}>
             <DashboardTopContent props={dashboardProps} />
