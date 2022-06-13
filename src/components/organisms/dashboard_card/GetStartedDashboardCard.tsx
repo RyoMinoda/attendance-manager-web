@@ -4,11 +4,11 @@ import GetStartedIconButton, { GetStartedIconButtonProps } from "../../atoms/but
 import { DashboardCardProps } from "./DashboardCardProps";
 
 const GetStartedDashboardCard = ({ props }: { props: DashboardCardProps }) => {
-    const { width, height, headerHeight, headerFontSize, gridMarginTB, innerContainerTopBottomMargin } = props;
+    const { width, height, headerHeight, headerFontSize, 
+        gridMarginTB, innerContainerTopBottomMargin, innerContainerLeftRightMargin } = props;
     const containerHeight = height - 2 * gridMarginTB * 8;
     const contentHeight = height - headerHeight;
-    const containerSidePadding = 3.0;
-    const innerContainerWidth = width - 8 * containerSidePadding * 2;
+    const innerContainerWidth = width - 8 * innerContainerLeftRightMargin * 2;
     const innerContainerHeight = contentHeight - 2 * innerContainerTopBottomMargin * 8;
     const types = GetStartedIconButtons;
     const buttonWidth = innerContainerWidth / types.length;
@@ -22,8 +22,8 @@ const GetStartedDashboardCard = ({ props }: { props: DashboardCardProps }) => {
                 </Grid>
                 <Grid item sx={{ width, height: contentHeight }}>
                     <Grid container 
-                        marginLeft={containerSidePadding} 
-                        marginRight={containerSidePadding} 
+                        marginLeft={innerContainerLeftRightMargin} 
+                        marginRight={innerContainerLeftRightMargin} 
                         marginBottom={innerContainerTopBottomMargin}
                         width={innerContainerWidth} 
                         height={innerContainerHeight}>

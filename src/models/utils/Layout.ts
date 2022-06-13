@@ -9,5 +9,5 @@ export const defaultLayout: Layout = {
     TopBarHeight: 65,
     BreadcrumbHeight: 50,
     MainAreaWidth: 1000,
-    PageMarginBottom: 15,
+    PageMarginBottom: 20,
 }

@@ -1,5 +1,9 @@
 import { Card, Grid,Typography } from "@mui/material";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { container } from "tsyringe";
+import { Schedule } from "../../../models/states/Schedule";
+import { UserParametersContext } from "../../../models/utils/UserParametersContext";
+import { ScheduleRepository } from "../../../repositories/ScheduleRepository";
 import { DashboardPeriod, DashboardPeriodType } from "../../atoms/button_group/enums/DashboardPeriodType";
 import PeriodSwitchButtonGroup, { PeriodSwitchButtonGroupProps } from "../../atoms/button_group/PeriodSwitchButtonGroup";
 import DashboardSchedule, { DashboardScheduleProps } from "../../molecules/schedule/DashboardSchedule";
@@ -9,11 +13,18 @@ import { DashboardCardProps } from "./DashboardCardProps";
 const TimeScheduleDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     const [ period, setPeriod ] = useState<DashboardPeriodType>(DashboardPeriod.Day);
     const [ date, setDate ] = useState<Date>(new Date());
-    
+    const { MyProfile } = useContext(UserParametersContext);
+    const [ schedules, setSchedules ] = useState<Array<Schedule>>(Array<Schedule>());
     const setTargetDate = (date: Date) => {
         setDate(date);
     }
-
+    useEffect(() => {
+        const scheduleRepository = container.resolve(ScheduleRepository);
+        const schedules = scheduleRepository.GetSchedules(MyProfile);
+        if (schedules.Data != null) {
+            setSchedules(schedules.Data);
+        }
+    }, [ MyProfile ]);
     const { width, height, headerHeight, gridMarginTB, headerFontSize, headerMarginLeft, innerContainerTopBottomMargin } = props;
     const buttonGroupSx = 3;
     const containerHeight = height - 2 * gridMarginTB * 8;
@@ -25,7 +36,7 @@ const TimeScheduleDashboardCard = ({ props }: { props: DashboardCardProps }) => 
         height: headerHeight / 2
     };
     const dashboardScheduleProps: DashboardScheduleProps = {
-        width, height: innerContainerHeight, period, date, setDate: setTargetDate
+        width, height: innerContainerHeight, period, date, setDate: setTargetDate, schedules
     }
     return (
         <Card sx={{ width, height }}>

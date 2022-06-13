@@ -1,6 +1,7 @@
 import { IResult } from "../../models/axios/Result";
 import { Group } from "../../models/states/Group";
+import { MyProfile } from "../../models/utils/MyProfile";
 
 export interface IGroupRepository {
-    GetGroups(): IResult<Array<Group>>
+    GetGroups(profile: MyProfile): IResult<Array<Group>>
 }

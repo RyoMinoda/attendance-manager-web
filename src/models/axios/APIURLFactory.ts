@@ -1,6 +1,6 @@
 import { ModelType } from "./ModelType";
 
-export class URLFactory {
+export class APIURLFactory {
     private modelType: ModelType;
 
     constructor(modelType: ModelType) {

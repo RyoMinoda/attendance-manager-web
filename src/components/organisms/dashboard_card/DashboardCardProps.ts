@@ -7,4 +7,5 @@ export type DashboardCardProps = {
     gridMarginTB: number,
     headerMarginLeft: number,
     innerContainerTopBottomMargin: number,
+    innerContainerLeftRightMargin: number,
 }

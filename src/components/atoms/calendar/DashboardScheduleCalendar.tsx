@@ -42,6 +42,7 @@ const DashboardScheduleCalendar = ({ props }: { props: DashboardScheduleCalendar
         width: innerWidth,
         height: datesHeight,
         date,
+        setDate
     };
 
     const addMonth = () => {
@@ -92,7 +93,7 @@ const DashboardScheduleCalendar = ({ props }: { props: DashboardScheduleCalendar
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item width={innerWidth} height={contentHeight}>
+                <Grid item width={innerWidth} height={contentHeight} marginLeft={0.2}>
                     <Grid container width={innerWidth} height={contentHeight}>
                         <Grid item height={weekdayHeight} width={innerWidth}>
                             <Grid container 
@@ -105,7 +106,7 @@ const DashboardScheduleCalendar = ({ props }: { props: DashboardScheduleCalendar
                                             justifyContent="center"
                                             alignItems="center"
                                             key={"weekday" + i} 
-                                            width={weekdayWidth} 
+                                            width={weekdayWidth - 1} 
                                             height={weekdayHeight} 
                                             sx={{ fontSize: FontSize.smaller, color: Palette.text.secondary }}>
                                             {x}

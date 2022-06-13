@@ -1,7 +1,9 @@
 import { Box, Button, Grid, SxProps, Theme, Typography } from "@mui/material";
 import { useContext } from "react";
 import { UiParametersContext } from "../../../models/utils/UiParametersContext";
+import { getButtonHoverAndActiveStyle } from "../../../styles/buttonStyles";
 import { GetStartedIconButtonType, IconButtonTextDictionary, IconColorDictionary, IconTypeDictionary } from "./enums/GetStartedIconButtonType";
+
 
 export type GetStartedIconButtonProps = {
     width: number,
@@ -17,7 +19,7 @@ const GetStartedIconButton = ({ props }: { props: GetStartedIconButtonProps }) =
     const getColor = IconColorDictionary.getValue(buttonType);
     const text = IconButtonTextDictionary.getValue(buttonType);
     const marginLeft = 0.5;
-    const marginRight = 2.0;
+    const marginRight = 1.0;
     const marginSide = marginRight + marginLeft;
     const innerHeight = height - 2 * 8 * marginTopBottom;
     const innerWidth = width - 2 * 8 * marginSide;
@@ -45,14 +47,7 @@ const GetStartedIconButton = ({ props }: { props: GetStartedIconButtonProps }) =
         border: 'none',
         boxShadow: 'none',
         textOverflow: 'hidden',
-        '&:hover': {
-            background: Palette.shadow.light,
-            boxShadow: 'none',
-        },
-        '&:active': {
-            background: Palette.shadow.light,
-            boxShadow: 'none',
-        }
+        ...getButtonHoverAndActiveStyle(Palette)
     }
     const titleStyle: SxProps<Theme> = {
         height: titleHeight, 
@@ -69,6 +64,7 @@ const GetStartedIconButton = ({ props }: { props: GetStartedIconButtonProps }) =
         fontSize: FontSize.normal, 
         color: Palette.text.primary, 
         paddingLeft: 1.0,
+        paddingRight: 1.0,
         paddingTop: 0.3,
         textAlign: 'left',
         lineHeight: 1.2,
