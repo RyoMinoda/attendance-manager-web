@@ -1,3 +1,5 @@
+import { getSelectionColor, PaletteSelection, paletteSelections } from "./PaletteSelection";
+
 export type Palette = {
     primary: {
         dark:   string;
@@ -22,8 +24,11 @@ export type Palette = {
     },
     shadow: {
         light: string,
-    }
+    },
+    selection: Array<PaletteSelection>,
+    getSelectionColor: (color: string) => string,
 }
+
 
 export const defaultPalette: Palette = {
     primary: {
@@ -49,5 +54,7 @@ export const defaultPalette: Palette = {
     },
     shadow: {
         light: '#EEEEEE'
-    }
+    },
+    selection: paletteSelections,
+    getSelectionColor
 }

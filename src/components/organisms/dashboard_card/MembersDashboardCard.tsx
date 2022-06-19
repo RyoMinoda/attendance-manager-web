@@ -13,6 +13,7 @@ import { DashboardCardProps } from "./DashboardCardProps";
 const MembersDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     const [ members, setMembers ] = useState<Array<Member>>(Array<Member>());
     const [ groups, setGroups ] = useState<Array<Group>>(Array<Group>());
+    const [ error, setError ] = useState<boolean>(false);
     const { MyProfile } = useContext(UserParametersContext);
     const { width, height, headerHeight, headerFontSize, gridMarginTB, innerContainerTopBottomMargin } = props;
     const containerHeight = height - 2 * gridMarginTB * 8;
@@ -21,14 +22,22 @@ const MembersDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     useEffect(() => {
         const memberRepository = container.resolve(MemberRepository);
         const groupRepository = container.resolve(GroupRepository);
-        const membersResult = memberRepository.GetMembers(MyProfile);
-        if (membersResult.Data !== null) {
-            setMembers(membersResult.Data);
-        }
-        const groupsResult = groupRepository.GetGroups(MyProfile);
-        if (groupsResult.Data !== null) {
-            setGroups(groupsResult.Data);
-        }
+        const membersPromise = memberRepository.GetMembers(MyProfile);
+        membersPromise.then((result) => {
+            if (result.Data !== null) {
+                setMembers(result.Data);
+            }
+        }).catch(() => {
+            setError(true);
+        });
+        const groupsPromise = groupRepository.GetGroups(MyProfile);
+        groupsPromise.then((result) => {
+            if (result.Data !== null) {
+                setGroups(result.Data);
+            }
+        }).catch(() => {
+            setError(true);
+        });
     }, [ MyProfile ]);
     const dashboardMemberProps: DashboardMemberProps = {
         width,

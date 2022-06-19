@@ -78,7 +78,7 @@ const DashboardScheduleHeader = ({ props }: { props: DashboardScheduleHeaderProp
                                 height={height}>
                                 <Box sx={buttonStyle} display="flex" alignItems="center" justifyContent="center">
                                     <Typography fontSize={FontSize.large}>
-                                        {x.getDate()}
+                                        {x.getDate().getDate()}
                                     </Typography>
                                 </Box>
                                 <Box sx={getBottomStyle(i)}>

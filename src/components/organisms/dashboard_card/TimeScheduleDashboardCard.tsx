@@ -13,6 +13,7 @@ import { DashboardCardProps } from "./DashboardCardProps";
 const TimeScheduleDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     const [ period, setPeriod ] = useState<DashboardPeriodType>(DashboardPeriod.Day);
     const [ date, setDate ] = useState<Date>(new Date());
+    const [ error, setError ] = useState<boolean>(false);
     const { MyProfile } = useContext(UserParametersContext);
     const [ schedules, setSchedules ] = useState<Array<Schedule>>(Array<Schedule>());
     const setTargetDate = (date: Date) => {
@@ -20,10 +21,14 @@ const TimeScheduleDashboardCard = ({ props }: { props: DashboardCardProps }) => 
     }
     useEffect(() => {
         const scheduleRepository = container.resolve(ScheduleRepository);
-        const schedules = scheduleRepository.GetSchedules(MyProfile);
-        if (schedules.Data != null) {
-            setSchedules(schedules.Data);
-        }
+        const schedulesResult = scheduleRepository.GetSchedules(MyProfile);
+        schedulesResult.then((result) => {
+            if(result.Data != null) {
+                setSchedules(result.Data);
+            }
+        }).catch(() => {
+            setError(true);
+        });
     }, [ MyProfile ]);
     const { width, height, headerHeight, gridMarginTB, headerFontSize, headerMarginLeft, innerContainerTopBottomMargin } = props;
     const buttonGroupSx = 3;

@@ -6,7 +6,7 @@ import { IScheduleRepository } from "./Interfaces/IScheduleRepository";
 
 @injectable()
 export class ScheduleRepository implements IScheduleRepository {
-    GetSchedules(profile: MyProfile): Result<Schedule[]> {
+    GetSchedules(profile: MyProfile): Promise<Result<Schedule[]>> {
         throw new Error("Method not implemented.");
     }
 }

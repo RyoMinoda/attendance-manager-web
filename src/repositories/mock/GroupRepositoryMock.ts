@@ -7,8 +7,11 @@ import { IGroupRepository } from "../Interfaces/IGroupRepository";
 
 @injectable()
 export class GroupRepositoryMock implements IGroupRepository {
-    GetGroups(profile: MyProfile): IResult<Array<Group>> {
-        return new ResultMock(this.List());
+    GetGroups(profile: MyProfile): Promise<IResult<Array<Group>>> {
+        return new Promise((resolve) => {
+            var list = new ResultMock(this.List());
+            resolve(list);
+        });
     }
 
     private List(): Array<Group> {

@@ -4,7 +4,7 @@ import { MyProfile } from "../models/utils/MyProfile";
 import { IGroupRepository } from "./Interfaces/IGroupRepository";
 
 export class GroupRepository implements IGroupRepository {
-    GetGroups(profile: MyProfile): IResult<Group[]> {
+    GetGroups(profile: MyProfile): Promise<IResult<Group[]>> {
         throw new Error("Method not implemented.");
     }
 }

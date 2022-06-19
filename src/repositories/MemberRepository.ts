@@ -17,16 +17,16 @@ export class MemberRepository implements IMemberRepository {
         this.urlFactory = new APIURLFactory(ModelUnion.Group);
     }
 
-    GetMembers(profile: MyProfile): Result<Member[]> {
+    GetMembers(profile: MyProfile): Promise<Result<Member[]>> {
         const url = this.urlFactory.Create(RouteUnion.GetAll);
-        var result = new Result<Array<Member>>();
-        axios.get(url)
-            .then((data: AxiosResponse<any, any>) => {
-                result = new Result<Array<Member>>(data);
-            })
-            .catch((error: AxiosResponse<any, any>) => {
-                result = new Result<Array<Member>>(error);
-            });
-        return result;
+        return new Promise((resolve) => {
+            axios.get(url)
+                .then((data: AxiosResponse<any, any>) => {
+                    resolve(new Result<Array<Member>>(data));
+                })
+                .catch((error: AxiosResponse<any, any>) => {
+                    resolve(new Result<Array<Member>>(error));
+                });
+        });
     }
 }

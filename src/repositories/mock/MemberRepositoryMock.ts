@@ -8,8 +8,11 @@ import { IMemberRepository } from "../Interfaces/IMemberRepository";
 
 @injectable()
 export class MemberRepositoryMock implements IMemberRepository {
-    GetMembers(profile: MyProfile): IResult<Member[]> {
-        return new ResultMock(this.List());
+    GetMembers(profile: MyProfile): Promise<IResult<Member[]>> {
+        return new Promise((resolve) => {
+            const result = new ResultMock(this.List());
+            resolve(result);
+        });
     }
 
     private List(): Array<Member> { 

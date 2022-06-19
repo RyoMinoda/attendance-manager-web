@@ -3,5 +3,5 @@ import { Schedule } from "../../models/states/Schedule";
 import { MyProfile } from "../../models/utils/MyProfile";
 
 export interface IScheduleRepository {
-    GetSchedules(profile: MyProfile): IResult<Array<Schedule>>
+    GetSchedules(profile: MyProfile): Promise<IResult<Array<Schedule>>>;
 }
