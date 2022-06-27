@@ -1,4 +1,5 @@
 import DashboardTop from "../../pages/DashboardTop";
+import GroupTop from "../../pages/GroupTop";
 import ServiceTop from "../../pages/ServiceTop";
 import SignIn from "../../pages/SignIn";
 import SignUp from "../../pages/SignUp";
@@ -22,6 +23,7 @@ export const PathTypes = Object.keys(Path);
 const componentKeyValues : Array<KeyValue<JSX.Element>> = [
     { key: Path.ServiceTop, value: <ServiceTop /> },
     { key: Path.DashboardTop, value: <DashboardTop /> },
+    { key: Path.GroupTop, value: <GroupTop /> },
     { key: Path.SignIn, value: <SignIn /> },
     { key: Path.SignUp, value: <SignUp /> },
 ];
@@ -30,6 +32,7 @@ export const PathComponentDictionary = new Dictionary(componentKeyValues);
 
 const textKeyValues: Array<KeyValue<string>> = [
     { key: Path.DashboardTop, value: "Home" },
+    { key: Path.GroupTop, value: "Group" },
     { key: Path.CreateGroup, value: "Create Group" }
 ];
 

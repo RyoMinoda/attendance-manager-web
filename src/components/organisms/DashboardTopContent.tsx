@@ -56,8 +56,9 @@ const DashboardTopContent = ({ props }: { props: DashboardTopContentProps }) => 
     useEffect(() => {
         setEntireHeight(entireHeight);
     });
+    const mainWidth = windowSize.width - 2 * outerSidePadding * 8;
     return (
-        <Grid container  sx={{ marginLeft: outerSidePadding, marginRight: outerSidePadding }}>
+        <Grid container  sx={{ marginLeft: outerSidePadding, marginRight: outerSidePadding, width: mainWidth }}>
             <Grid item sx={{ height: getStartedHeight, width: cardWidth, ...commonSx  }}>
                 <GetStartedDashboardCard props={getStartedCardProps} />
             </Grid>

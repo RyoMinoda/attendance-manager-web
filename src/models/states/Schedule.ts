@@ -1,5 +1,5 @@
 export type Schedule = {
-    Id: string,
+    ScheduleId: string,
     TimelineId: string, 
     Name: string,
     ScheduleFor: Date,
@@ -7,4 +7,12 @@ export type Schedule = {
     IsActive: boolean,
     IsCarried: boolean, 
     IsOver: boolean,
+}
+
+export class ScheduleClass {
+    private schedules: Array<Schedule>;
+
+    constructor(schedules: Array<Schedule>, timelineId: string) {
+        this.schedules = schedules.filter(x => x.TimelineId === timelineId);
+    }
 }

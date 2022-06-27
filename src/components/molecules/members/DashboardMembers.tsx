@@ -15,23 +15,23 @@ export type DashboardMemberProps = {
     width: number,
     members: Array<Member>;
     groups: Array<Group>;
+    innerContainerTopBottomMargin: number;
 }
 
 
 const DashboardMember = ({ props }: { props: DashboardMemberProps }) => {
-    const { width, height, members, groups } = props;
+    const { width, height, members, groups, innerContainerTopBottomMargin } = props;
     const [ filterType, setFilterType ] = useState<string>(DashboardMembersFilterUnion.Name);
-    const { MyProfile } = useContext(UserParametersContext);
-    const { FontSize } = useContext(UiParametersContext);
     const inputSx = 5;
     const inputBottomPadding = 1;
     const inputEntireHeight = 60;
     const inputMarginTopBottom = 1;
     const inputInnerHeight = inputEntireHeight - inputBottomPadding * 8 * 2;
+    const membersHeight = height - inputEntireHeight - innerContainerTopBottomMargin * 8;
     const inputWidth = inputSx / 12 * width;
     const spaceContainer = 1;
     const memberContainerSx = 12 - 2 * spaceContainer;
-    const memberContainerHeight = (height - inputEntireHeight) / 4.5;
+    const memberContainerHeight = membersHeight / 4.5;
     const memberContainerWidth = memberContainerSx / 12 * width;
     const selectorProps: SelectorProps<string> = {
         width: width * 1 / 4,
@@ -43,7 +43,7 @@ const DashboardMember = ({ props }: { props: DashboardMemberProps }) => {
     }
     const memberArray = new MemberArray(members, groups);
     return (
-        <Box width={width} height={height} sx={{ overflowY: 'scroll', scrollbarWidth: 'none' }}>
+        <Box width={width} height={height}>
             <Grid container>
                 <Grid item sx={{ width, height: inputEntireHeight }}>
                     <Grid container sx={{ width, height: inputEntireHeight }}>
@@ -73,7 +73,7 @@ const DashboardMember = ({ props }: { props: DashboardMemberProps }) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item sx={{ width }}>
+                <Grid item sx={{ width, height: membersHeight, overflowY: 'scroll', scrollbarWidth: 'none' }}>
                     <Grid container sx={{ width }}>
                         <Grid item xs={spaceContainer}></Grid>
                         <Grid item xs={memberContainerSx}>
@@ -91,7 +91,6 @@ const DashboardMember = ({ props }: { props: DashboardMemberProps }) => {
                             })}
                         </Grid>
                     </Grid>
-
                 </Grid>
             </Grid>
         </Box>

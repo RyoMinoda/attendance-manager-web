@@ -6,8 +6,8 @@ export type Layout = {
 }
 
 export const defaultLayout: Layout = {
-    TopBarHeight: 65,
+    TopBarHeight: 70,
     BreadcrumbHeight: 50,
-    MainAreaWidth: 1000,
+    MainAreaWidth: 1200,
     PageMarginBottom: 20,
 }

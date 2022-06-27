@@ -42,7 +42,8 @@ const MembersDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     const dashboardMemberProps: DashboardMemberProps = {
         width,
         height: innerContainerHeight,
-        members, groups
+        members, groups,
+        innerContainerTopBottomMargin
     }
     return (
         <Card sx={{ width, height }}>

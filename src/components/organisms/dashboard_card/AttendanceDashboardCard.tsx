@@ -59,12 +59,14 @@ const AttendanceDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     const contentHeight = containerHeight - headerHeight;
     const innerContainerHeight = contentHeight - 2 * innerContainerTopBottomMargin * 8;
     const innerContainerWidth = width - 2 * innerContainerLeftRightMargin * 8;
-    const timelineWidth = innerContainerWidth * 0.4;
-    const attendanceWidth = innerContainerWidth - timelineWidth;
+    const spacerWidth = innerContainerWidth * 0.05;
+    const timelineWidth = innerContainerWidth * 0.35;
+    const attendanceWidth = innerContainerWidth - timelineWidth - spacerWidth * 2;
     const timelineProps: DashboardAttendanceSchedulesProps = {
         width: timelineWidth,
         height: innerContainerHeight,
-        schedules, timelines, timelineId
+        schedules, timelines, timelineId,
+        setTimelineId
     }
     const attendanceProps: DashboardAttendanceHistoriesProps = {
         width: attendanceWidth,
@@ -86,6 +88,8 @@ const AttendanceDashboardCard = ({ props }: { props: DashboardCardProps }) => {
                         marginTop={innerContainerTopBottomMargin}>
                         <Grid item width={timelineWidth} height={innerContainerHeight}>
                             <DashboardAttendanceSchedules props={timelineProps} />
+                        </Grid>
+                        <Grid item width={spacerWidth} height={innerContainerHeight}>
                         </Grid>
                         <Grid item width={attendanceWidth} height={innerContainerHeight}>
                             <DashboardAttendanceHistories props={attendanceProps} />

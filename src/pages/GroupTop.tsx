@@ -1,24 +1,21 @@
+import { Grid } from "@mui/material";
 import { useState } from "react";
-import DashboardTopContent, { DashboardTopContentProps } from "../components/organisms/DashboardTopContent";
 import MemberLayout, { MemberLayoutProps } from "../components/templates/MemberLayout";
 import { Path } from "../models/utils/PathType";
 import { useWindowSize } from "../models/utils/WindowLayout";
 
-const DashboardTop = () => {
+const GroupTop = () => {
     const WindowLayout = useWindowSize();
-    const [entireHeight, setEntireHeight ] = useState<number>(WindowLayout.width);
+    const [entireHeight, setEntireHeight ] = useState<number>(WindowLayout.height);
     const memberLayoutProps: MemberLayoutProps = {
-        breadcrumbLinks: [ Path.DashboardTop ],
+        breadcrumbLinks: [ Path.DashboardTop, Path.GroupTop ],
         height: entireHeight
-    }
-    const dashboardProps: DashboardTopContentProps = {
-        setEntireHeight
     }
     return (
         <MemberLayout props={memberLayoutProps}>
-            <DashboardTopContent props={dashboardProps} />
+            
         </MemberLayout>
     );
 }
 
-export default DashboardTop;
+export default GroupTop;

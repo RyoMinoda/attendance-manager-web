@@ -10,14 +10,17 @@ export type DashboardAttendanceSchedulesProps = {
     height: number,
     schedules: Array<Schedule>,
     timelines: Array<Timeline>,
-    timelineId: string
+    timelineId: string,
+    setTimelineId: React.Dispatch<React.SetStateAction<string>>
 }
 
 const DashboardAttendanceSchedules = ({ props }: { props: DashboardAttendanceSchedulesProps }) => {
-    const { width, height, schedules, timelines, timelineId } = props;
+    const { width, height, schedules, timelines, timelineId, setTimelineId } = props;
     const { FontSize, Palette } = useContext(UiParametersContext);
     const itemCount = 6;
-    const itemHeight = height / itemCount;
+    const paddingTop = 2;
+    const contentHeight = height - paddingTop * 8; 
+    const itemHeight = contentHeight / itemCount;
     const sidePadding = 1;
     const buttonWidth = width - 2 * sidePadding * 8;
     const countWidth = buttonWidth * 0.15;
@@ -38,7 +41,7 @@ const DashboardAttendanceSchedules = ({ props }: { props: DashboardAttendanceSch
         height: itemHeight
     }
     const textStyle: SxProps<Theme> = {
-        width: buttonWidth -  countWidth * 2,
+        width: buttonWidth -  countWidth * 2.1,
         height: itemHeight,
         paddingLeft: 1,
     }
@@ -47,32 +50,33 @@ const DashboardAttendanceSchedules = ({ props }: { props: DashboardAttendanceSch
         height: itemHeight, 
     }
     const onClickHandler = (timeline: Timeline): void => {
-
+        setTimelineId(timeline.Id);
     }
     return (
-        <Box sx={{ width, height, overflowY: 'scroll', scrollbarWidth: 'none', paddingLeft: sidePadding }}>
+        <Box sx={{ width, height: contentHeight, overflowY: 'scroll', scrollbarWidth: 'none', paddingLeft: sidePadding, paddingTop }}>
             <Grid container sx={{ width, height: itemHeight * timelines.length }}>
                 {timelines.map((tl, i) => {
                     const timelineObj = new TimelineClass(tl);
                     const done = schedules.filter(x => x.TimelineId === tl.Id && x.IsCarried);
                     const overed = schedules.filter(x => x.TimelineId === tl.Id && x.IsOver);
-                    const backgroundColor = tl.Id === timelineId ? Palette.primary.light : Palette.background.component;
+                    const bgcolor = tl.Id === timelineId ? Palette.background.main : Palette.background.component;
+                    const color = tl.Id === timelineId ? Palette.primary.dark : Palette.text.light;
                     return (
                         <Grid item
                             key={"schedule_item" + i.toString()}>
-                            <Button sx={{ backgroundColor, ...buttonStyle }} onClick={() => onClickHandler(tl)}>
-                                <Grid container>
+                            <Button sx={{ ...buttonStyle, background: bgcolor }} onClick={() => onClickHandler(tl)}>
+                                <Grid container sx={{ overflow: 'hidden' }}>
                                     <Grid item sx={flequecyStyle} display="flex" alignItems="center" justifyContent="center">
                                         <Box 
                                             sx={{ width: countCircleWidth, height: countCircleWidth, borderRadius: countCircleWidth }} 
                                             display="flex" alignItems="center" justifyContent="center" bgcolor={timelineObj.getColor(Palette)}>
-                                            <Typography fontSize={FontSize.small} color="white">
+                                            <Typography fontSize={FontSize.minimum} color="white">
                                                 {timelineObj.getFrequencyString()}
                                             </Typography>
                                         </Box>
                                     </Grid>
                                     <Grid item sx={textStyle} display="flex" alignItems="center">
-                                        <Typography fontSize={FontSize.larger}>
+                                        <Typography fontSize={FontSize.larger} color={color}>
                                             {tl.Name}
                                         </Typography>
                                     </Grid>

@@ -1,9 +1,12 @@
 import { Box, Grid } from "@mui/material";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Schedule } from "../../../models/states/Schedule";
 import { DashboardPeriodType } from "../../atoms/button_group/enums/DashboardPeriodType";
 import DashboardScheduleCalendar, { DashboardScheduleCalendarProps } from "../../atoms/calendar/DashboardScheduleCalendar";
 import DashboardScheduleContents, { DashboardScheduleContentsProps } from "../../atoms/calendar/DashboardScheduleContents";
 import DashboardScheduleHeader, { DashboardScheduleHeaderProps } from "../../atoms/calendar/DashboardScheduleHeader";
+import DashboardScheduleLines from "../../atoms/calendar/DashboardScheduleLines";
+import DashboardScheduleScroller from "../../atoms/calendar/DashboardScheduleScroller";
 
 export type DashboardScheduleProps = {
     width: number,
@@ -16,6 +19,7 @@ export type DashboardScheduleProps = {
 
 const DashboardSchedule = ({ props }: { props: DashboardScheduleProps }) => {
     const { width, height, period, date, setDate, schedules } = props;
+    const [ scrollTop, setScrollTop ] = useState(0);
     const sideMargin = 4.0;
     const columnHeight = height * 0.18;
     const contentHeight = height - columnHeight;
@@ -33,12 +37,17 @@ const DashboardSchedule = ({ props }: { props: DashboardScheduleProps }) => {
         date, setDate,
         period,
         sideMargin: 1.0,
-        timelineWidthRate: 0.15
+        timelineWidthRate: 0.15,
+        borderWidth: 1,
     }
     const contentsProps: DashboardScheduleContentsProps = {
         ...headerProps,
         height: contentHeight,
-        schedules,
+        marginTop: 2,
+        schedules, scrollTop,
+        hours: 25,  
+        setScrollTop, 
+        hourHeight: contentHeight / 2.5,
     }
     return (
         <Box width={boardWidth} height={height} marginLeft={sideMargin}>
@@ -51,8 +60,16 @@ const DashboardSchedule = ({ props }: { props: DashboardScheduleProps }) => {
                         <Grid item height={columnHeight} width={scheduleWidth}>
                             <DashboardScheduleHeader props={headerProps} />
                         </Grid>
-                        <Grid item height={contentHeight} width={scheduleWidth}>
-                            <DashboardScheduleContents props={contentsProps} />
+                        <Grid item height={contentHeight} width={scheduleWidth} position="relative">
+                            <Box position="absolute">
+                                <DashboardScheduleLines props={contentsProps} />
+                            </Box>
+                            <Box position="absolute">
+                                <DashboardScheduleContents props={contentsProps} />
+                            </Box>
+                            <Box position="absolute">
+                                <DashboardScheduleScroller props={contentsProps} />
+                            </Box>
                         </Grid>
                     </Grid>
                 </Grid>

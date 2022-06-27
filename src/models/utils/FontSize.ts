@@ -4,6 +4,7 @@ export type FontSize = {
     normal: number,
     smaller: number,
     small: number,  
+    minimum: number,
 }
 
 export const defaultFontSize: FontSize = {
@@ -11,5 +12,6 @@ export const defaultFontSize: FontSize = {
     larger: 14,
     normal: 13,
     smaller: 12,
-    small: 9
+    small: 9,
+    minimum: 7
 }

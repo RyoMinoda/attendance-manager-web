@@ -22,7 +22,12 @@ export class MemberArray {
         switch (key) {
             case DashboardMembersFilterUnion.Group:
                 return this.members.sort((a, b) => {
-                    return a.Name.localeCompare(b.Name);  
+                    const groupAs = this.groups.filter(x => a.GroupIds.indexOf(x.Id) > -1);
+                    const groupBs = this.groups.filter(x => b.GroupIds.indexOf(x.Id) > -1);
+                    if (groupAs.length > 0 && groupBs.length > 0) {
+                        return groupAs[0].Name.localeCompare(groupBs[0].Name);
+                    }
+                    return 0;  
                 });
             case DashboardMembersFilterUnion.Name:
                 return this.members.sort((a, b) => {

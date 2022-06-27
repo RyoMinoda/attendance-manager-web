@@ -1,8 +1,8 @@
 import { Box, Grid, SxProps, Theme, Typography } from "@mui/material";
-import { useContext } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { Schedule } from "../../../models/states/Schedule";
 import { UiParametersContext } from "../../../models/utils/UiParametersContext";
-import { DigitNumber } from "../../../utils/DigitNumber";
+import { getDigitNumber } from "../../../utils/DigitNumber";
 import { DashboardPeriodIndexDictionary, DashboardPeriodType } from "../button_group/enums/DashboardPeriodType";
 
 export type DashboardScheduleContentsProps = {
@@ -13,23 +13,27 @@ export type DashboardScheduleContentsProps = {
     timelineWidthRate: number,
     sideMargin: number,
     schedules: Array<Schedule>,
+    marginTop: number,
+    hours: number,
+    scrollTop: number,
+    hourHeight: number,
+    setScrollTop: React.Dispatch<React.SetStateAction<number>>,
+    borderWidth: number,
 }
 
 const DashboardScheduleContents = ({ props } : { props: DashboardScheduleContentsProps }) => {
-    const { width, height, sideMargin, period, timelineWidthRate } = props;
+    const { width, height, sideMargin, period, scrollTop, hourHeight, borderWidth,
+            timelineWidthRate, marginTop, hours } = props;
     const innerWidth = width - 2 * 8 * sideMargin;
     const { Palette } = useContext(UiParametersContext);
-    const hours = 25;
     const hoursArray = [ ...Array(hours) ];
     const dateLength = DashboardPeriodIndexDictionary.getValue(period);
-    const timelineWidth = timelineWidthRate * innerWidth + 0.5;
+    const timelineWidth = timelineWidthRate * innerWidth;
     const scheduleWidth = innerWidth - timelineWidth;
-    const hourHeight = height / (dateLength / 2  + 2);
-    const commonMarginTop = 2;
     const timelineBoxMarginRight = 1;
     const timeBoxSx: SxProps<Theme> = {
         position: 'absolute',
-        top: - hourHeight / 2,
+        top: - hourHeight / 2 - scrollTop,
         width: timelineWidth - 2.5 * 8,
         height: hourHeight,
         zIndex: 1,
@@ -38,12 +42,12 @@ const DashboardScheduleContents = ({ props } : { props: DashboardScheduleContent
         var borderTopWidth = i === 0 ? 1 : 0;
         return {
             position: 'absolute',
-            top: 0,
+            top: - scrollTop,
             right: 0,
             width: timelineBoxMarginRight * 8,
             height: hourHeight,
             borderStyle: "solid",
-            borderWidth: 1,
+            borderWidth,
             borderLeftWidth: 0,
             borderTopWidth,
             borderColor: Palette.text.light,
@@ -52,16 +56,16 @@ const DashboardScheduleContents = ({ props } : { props: DashboardScheduleContent
     }
     const panelWidth = scheduleWidth / dateLength;
     const panelButtonSx = (row: number, column: number): SxProps<Theme> => {
-        const borderBottomWidth = row === hours - 2 ? 1 : 0;
+        const borderBottomWidth = row === hours - 2 ? borderWidth : 0;
         return {
             position: "absolute",
             width: panelWidth,
-            height: hourHeight,
-            top: hourHeight * row,
+            height: hourHeight - 1,
+            top: hourHeight * row - scrollTop,
             borderRadius: 0,
             borderStyle: "solid",
-            borderRightWidth: 1,
-            borderTopWidth: 1,
+            borderRightWidth: borderWidth,
+            borderTopWidth: borderWidth,
             borderLeftWidth: 0,
             borderBottomWidth,
             borderColor: Palette.text.light,
@@ -74,10 +78,10 @@ const DashboardScheduleContents = ({ props } : { props: DashboardScheduleContent
             marginLeft={sideMargin}
             sx={{ overflowY: 'scroll', overflowX: 'hidden', scrollbarWidth: 'none', }}
         >
-            <Grid item width={timelineWidth} marginTop={commonMarginTop}>
+            <Grid item width={timelineWidth} marginTop={marginTop}>
                 {hoursArray.map((x, i) => {
                     return (
-                        <Grid container key={"hour-schedule-" + i.toString()}>
+                        <Grid container key={"hour-schedule-" + i.toString()} sx={{ position: "relative", zIndex: 1 }}>
                             <Grid item 
                                 width={timelineWidth} 
                                 height={i !== hours - 1 ? hourHeight : 10} 
@@ -89,7 +93,7 @@ const DashboardScheduleContents = ({ props } : { props: DashboardScheduleContent
                                     justifyContent="end"
                                     sx={timeBoxSx}>
                                         <Typography>
-                                            {DigitNumber.GetDigit(2, i) + ":00"}
+                                            {getDigitNumber(2, i) + ":00"}
                                         </Typography>
                                 </Box>
                                 {i !== hours - 1 ?  <Box sx={getLineBoxSx(i)}></Box> : <></>}
@@ -103,7 +107,7 @@ const DashboardScheduleContents = ({ props } : { props: DashboardScheduleContent
                 return (
                     <Grid item
                         width={panelWidth} 
-                        marginTop={commonMarginTop} 
+                        marginTop={marginTop} 
                         key={"time" + c.toString()}
                     >
                         <Box position="relative">

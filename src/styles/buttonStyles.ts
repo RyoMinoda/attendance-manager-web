@@ -13,3 +13,16 @@ export const getButtonHoverAndActiveStyle = (Palette: Palette): SxProps<Theme> =
         }
     }
 }
+
+export const getButtonHoverAndActiveStyle2 = (Palette: Palette): SxProps<Theme> => {
+    return {
+        '&:hover': {
+            background: Palette.primary.light,
+            boxShadow: 'none',
+        },
+        '&:active': {
+            background: Palette.primary.light,
+            boxShadow: 'none',
+        }
+    }
+}

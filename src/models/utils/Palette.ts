@@ -10,7 +10,9 @@ export type Palette = {
     },
     secondary: {
         red: string,
+        lightRed: string,
         blue: string,
+        lightBlue: string,
         orange: string,
     },
     background: {
@@ -40,7 +42,9 @@ export const defaultPalette: Palette = {
     },
     secondary: {
         red: "#ff6464",
+        lightRed: "#ffcaca",
         blue: "#5fc9f3",
+        lightBlue: "#afdbf8",
         orange: "#fa9856",
     },
     background: {
@@ -49,7 +53,7 @@ export const defaultPalette: Palette = {
     },
     text: {
         primary: "#222222",
-        secondary: "#888888",
+        secondary: "#999999",
         light: '#CCCCCC',
     },
     shadow: {

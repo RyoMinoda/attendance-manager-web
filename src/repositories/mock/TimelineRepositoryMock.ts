@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import { Result, ResultMock } from "../../models/axios/Result";
 import { Timeline } from "../../models/states/Timeline";
 import { MyProfile } from "../../models/utils/MyProfile";

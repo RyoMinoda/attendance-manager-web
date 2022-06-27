@@ -12,10 +12,11 @@ export type DashboardScheduleHeaderProps = {
     period: DashboardPeriodType,
     sideMargin: number,
     timelineWidthRate: number,
+    borderWidth: number
 }
 
 const DashboardScheduleHeader = ({ props }: { props: DashboardScheduleHeaderProps }) => {
-    const {  width, height, date, period, timelineWidthRate, sideMargin } = props;
+    const {  width, height, date, period, timelineWidthRate, sideMargin, borderWidth } = props;
     const { FontSize, Palette } = useContext(UiParametersContext);
     const activeWidth = width - 2 * sideMargin * 8;
     const timeWidth = activeWidth * timelineWidthRate;
@@ -33,13 +34,12 @@ const DashboardScheduleHeader = ({ props }: { props: DashboardScheduleHeaderProp
         height: height, 
         textTransform: "none",
         color: Palette.text.secondary,
-        zIndex: 1
+        zIndex: 1,
     }
 
     const top = height * 0.7 / 8;
     const bottomHeight = height - top * 8;
     const getBottomStyle = (i: number): SxProps<Theme> => {
-        const borderWidth = 1;
         const borderLeftWidth = i === 0 ? borderWidth : 0;
         const borderRightWidth = i === 0 && i === dateLength ?  0 : borderWidth;
         return {
@@ -47,20 +47,21 @@ const DashboardScheduleHeader = ({ props }: { props: DashboardScheduleHeaderProp
             marginTop: top, 
             height: bottomHeight - 1, 
             width: columnWidth, 
+            left: - borderLeftWidth,
             borderStyle: "solid",
             borderTopWidth: 0,
             borderBottomWidth: borderWidth,
             borderLeftWidth,
             borderRightWidth,
             borderColor: Palette.text.light,
-            zIndex: 2 
+            zIndex: 2
         };
     }
     const emptyBoxPaddingLeft = timeWidth / 8 - 2;
     const emptyStyle: SxProps = {
         borderStyle: "solid",
         borderWidth: 0,
-        borderBottomWidth: 1,
+        borderBottomWidth: borderWidth,
         borderColor: Palette.text.light,
         marginLeft: emptyBoxPaddingLeft,
         width: timeWidth - emptyBoxPaddingLeft * 8,
@@ -73,6 +74,7 @@ const DashboardScheduleHeader = ({ props }: { props: DashboardScheduleHeaderProp
                     {days.map((x, i) => {
                         return (
                             <Grid item 
+                                position="relative"
                                 key={x.getDate().toString()}
                                 width={columnWidth} 
                                 height={height}>

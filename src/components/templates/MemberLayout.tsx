@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useContext } from "react";
 import { UiParametersContext } from "../../models/utils/UiParametersContext";
 import { useWindowSize } from "../../models/utils/WindowLayout";
@@ -19,20 +19,25 @@ const MemberLayout = ({ props, children }: { props: MemberLayoutProps, children:
         links: breadcrumbLinks,
     }
     const theoricalHeight = height + Layout.TopBarHeight + Layout.BreadcrumbHeight + Layout.PageMarginBottom * 8;
-    const entireHeight = WindowLayout.height > theoricalHeight ? WindowLayout.height : theoricalHeight;
+    const entireHeight = WindowLayout.height > theoricalHeight ? theoricalHeight : WindowLayout.height;
     const mainHeight = entireHeight - Layout.TopBarHeight - Layout.BreadcrumbHeight;
     return (
-        <Grid container width={WindowLayout.width} height={entireHeight} sx={{ overflowY: 'scroll', overflowX: 'hidden' }}>
-            <Grid item width={WindowLayout.width} height={Layout.TopBarHeight}  sx={{ overflow: 'hidden' }}>
-                <MemberBar />
+        <Box width={WindowLayout.width} height={WindowLayout.height} sx={{ overflowX: "hidden", overflowY: "auto", scrollbarWidth: "none" }}>
+            <Grid container width={WindowLayout.width} height={entireHeight}>
+                <Grid item width={WindowLayout.width} height={Layout.TopBarHeight}>
+                    <MemberBar />
+                </Grid>
+                <Grid item width={WindowLayout.width} height={Layout.BreadcrumbHeight}>
+                    <MemberBreadcrumbs props={breadcrumbProps} />
+                </Grid>
+                <Grid item width={WindowLayout.width} height={mainHeight} sx={{ background: Palette.background.main, overflowY: "auto", overflowX: 'hidden', position: "relative" }}>
+                    <Box width={WindowLayout.width}>
+                        {children}
+                    </Box>
+                </Grid>
             </Grid>
-            <Grid item width={WindowLayout.width} height={Layout.BreadcrumbHeight}>
-                <MemberBreadcrumbs props={breadcrumbProps} />
-            </Grid>
-            <Grid item width={WindowLayout.width} height={mainHeight} sx={{ background: Palette.background.main, overflow: 'hidden' }}>
-                {children}
-            </Grid>
-        </Grid>
+        </Box>
+
     );
 }
 
