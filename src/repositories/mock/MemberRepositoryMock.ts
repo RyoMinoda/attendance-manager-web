@@ -18,31 +18,31 @@ export class MemberRepositoryMock implements IMemberRepository {
     private List(): Array<Member> { 
         const MemberMock: Array<Member> = [
             { 
-                Id: Guid.NewGuid(), 
+                MemberId: Guid.NewGuid(), 
                 GroupIds: [Guid.GetSpecifyGuid("group", 1)], 
                 Name: "Wynonna Dalton",
                 Online: true, 
             },
             { 
-                Id: Guid.NewGuid(), 
+                MemberId: Guid.NewGuid(), 
                 GroupIds:  [Guid.GetSpecifyGuid("group", 1)],
                 Name: "Alice Lee", 
                 Online: true,
             },
             {
-                Id: Guid.NewGuid(), 
+                MemberId: Guid.NewGuid(), 
                 GroupIds: [Guid.GetSpecifyGuid("group", 2)],
                 Name: "Eden Hardy",
                 Online: false
             },
             {
-                Id: Guid.NewGuid(), 
+                MemberId: Guid.NewGuid(), 
                 GroupIds: [Guid.GetSpecifyGuid("group", 2)],
                 Name: "Eleanor Yates",
                 Online: true
             },
             {
-                Id: Guid.NewGuid(), 
+                MemberId: Guid.NewGuid(), 
                 GroupIds: [Guid.GetSpecifyGuid("group", 3)],
                 Name: "Bruno Motley",
                 Online: false

@@ -26,3 +26,18 @@ export const getButtonHoverAndActiveStyle2 = (Palette: Palette): SxProps<Theme> 
         }
     }
 }
+
+
+export const getButtonHoverAndActiveStyle3 = (Palette: Palette): SxProps<Theme> => {
+    return {
+        '&:hover': {
+            background: Palette.primary.darker,
+            color: Palette.primary.light
+        },
+        '&:active': {
+            background: Palette.primary.light,
+            color: Palette.primary.darker,
+            boxShadow: 'none',
+        }
+    }
+}

@@ -1,5 +1,6 @@
 export type Group = {
-    Id: string;
+    GroupId: string;
     Name: string;
     Color: string;
+    OrganizationId: string | null;
 }

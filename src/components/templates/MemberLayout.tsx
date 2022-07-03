@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UiParametersContext } from "../../models/utils/UiParametersContext";
 import { useWindowSize } from "../../models/utils/WindowLayout";
 import MemberBreadcrumbs, { MemberBreadcrumbsProps } from "../atoms/breadcrumbs/MemberBreadcrumbs";
-import MemberBar from "../molecules/bars/MemberBar";
+import MemberBar from "../molecules/top_bars/MemberBar";
 
 export type MemberLayoutProps = {
     breadcrumbLinks: Array<string>,

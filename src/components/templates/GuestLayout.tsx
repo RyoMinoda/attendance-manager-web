@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { useContext } from "react";
 import { UiParametersContext } from "../../models/utils/UiParametersContext";
 import { useWindowSize } from "../../models/utils/WindowLayout";
-import GuestBar from "../molecules/bars/GuestBar";
+import GuestBar from "../molecules/top_bars/GuestBar";
 
 export type GuestLayoutProps = {
     height: number,

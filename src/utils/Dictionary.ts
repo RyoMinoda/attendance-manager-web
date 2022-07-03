@@ -20,6 +20,15 @@ export class Dictionary<T> {
         throw new Error("Dictionary;" + type + 'is Error');
     }
 
+    getValueOrDefault(type: any, defaultValue: T): T {
+        var target = this.list.filter(x => x.key === type);
+        if (target.length > 0) {
+            const { value } = target[0];
+            return value;
+        }
+        return defaultValue;
+    }
+
     getEnumStr(type: any): T {
         var target = this.list.filter(x => x.key === type);
         if (target.length > 0) {

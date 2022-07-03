@@ -31,7 +31,12 @@ export class ResultMock<T> implements IResult<T> {
     Data: T | null;
     
     constructor(data: T) {
-        this.Status = Status.Success;
-        this.Data = data;
+        if (data === null) {
+            this.Status = Status.NotFound;
+            this.Data = null;
+        } else {
+            this.Status = Status.Success;
+            this.Data = data;
+        }
     }
 }

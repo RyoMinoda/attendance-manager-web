@@ -8,7 +8,6 @@ import TopBarButton, { TopBarButtonProps } from "../../atoms/buttons/TopBarButto
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-
 const MemberBar = () => {
     const uiParameter = useContext(UiParametersContext);
     const WindowLayout = useWindowSize();
@@ -40,7 +39,7 @@ const MemberBar = () => {
         { column: textButtonXs, totalColumn, children: <TopBarButton props={signUpButtonProps} /> }
     ]
     return (
-        <Grid container sx={{ height: Layout.TopBarHeight, background: Palette.primary.main, width: WindowLayout.width }}>
+        <Grid container sx={{ height: Layout.TopBarHeight, background: Palette.primary.main, width: WindowLayout.width, overflow: "hidden" }}>
             {gridItems.map((x, i) => {
                 const { column, totalColumn, children } = x;
                 const width = WindowLayout.width / totalColumn * column;

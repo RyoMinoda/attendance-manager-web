@@ -3,9 +3,7 @@ import { Member, MemberArray } from "../../../models/states/Member";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import DashboardMemberCard, { DashboardMemberCardProps } from "./DashboardMemberCard";
 import { Group } from "../../../models/states/Group";
-import { useContext, useState } from "react";
-import { UiParametersContext } from "../../../models/utils/UiParametersContext";
-import { UserParametersContext } from "../../../models/utils/UserParametersContext";
+import { useState } from "react";
 import { SelectorProps } from "../../atoms/selector/SelectorProps";
 import DashboardMembersSelector from "../../atoms/selector/DashboardMembersSelector";
 import { DashboardMembersFilterUnion } from "../../atoms/selector/enum/DashboardMembersFilterType";
@@ -80,7 +78,7 @@ const DashboardMember = ({ props }: { props: DashboardMemberProps }) => {
                             {memberArray
                             .orderby(filterType)
                             .map((x, i) => {
-                                const targetGroups = groups.filter(y => x.GroupIds.includes(y.Id));
+                                const targetGroups = groups.filter(y => x.GroupIds.includes(y.GroupId));
                                 const cardProps: DashboardMemberCardProps = {
                                     height: memberContainerHeight,
                                     width: memberContainerWidth,

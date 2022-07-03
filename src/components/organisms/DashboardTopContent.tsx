@@ -2,11 +2,11 @@ import { Grid } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { UiParametersContext } from "../../models/utils/UiParametersContext";
 import { useWindowSize } from "../../models/utils/WindowLayout";
-import AttendanceDashboardCard from "./dashboard_card/AttendanceDashboardCard";
-import { DashboardCardProps } from "./dashboard_card/DashboardCardProps";
-import GetStartedDashboardCard from "./dashboard_card/GetStartedDashboardCard";
-import MembersDashboardCard from "./dashboard_card/MembersDashboardCard";
-import TimeScheduleDashboardCard from "./dashboard_card/TimeScheduleDashboardCard";
+import AttendanceDashboardCard from "./dashboard/AttendanceDashboardCard";
+import { DashboardCardProps } from "./dashboard/DashboardCardProps";
+import GetStartedDashboardCard from "./dashboard/GetStartedDashboardCard";
+import MembersDashboardCard from "./dashboard/MembersDashboardCard";
+import TimeScheduleDashboardCard from "./dashboard/TimeScheduleDashboardCard";
 
 export type DashboardTopContentProps = {
     setEntireHeight: React.Dispatch<React.SetStateAction<number>>
