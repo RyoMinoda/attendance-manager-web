@@ -3,4 +3,7 @@ export type Group = {
     Name: string;
     Color: string;
     OrganizationId: string | null;
+    Description: string;
+    IsViewable: boolean,
+    IsEditable: boolean,
 }

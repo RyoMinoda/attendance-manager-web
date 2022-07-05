@@ -15,13 +15,13 @@ export type GroupTopListProps = {
 
 const GroupTopList = ({ props }: { props: GroupTopListProps }) => {
     const { width, height, groups, organizations } = props;
-    const { FontSize, Palette } = useContext(UiParametersContext);
+    const { FontSize, Palette, Layout } = useContext(UiParametersContext);
     const itemHeight = 120;
     const itemInnerWidth = width;
     const organizationHeight = 35;
     return (
         <Box width={width} height={height} sx={{ overflowY: "scroll", overflowX: "hidden", scrollbarWidth: "none" }}>
-            <Grid container>
+            <Grid container width={width} height={height + Layout.PageMarginBottom * 8}>
                 {organizations.map((organization) => {
                     const target = groups.filter((x) => x.OrganizationId === organization.OrganizationId);
                     return (

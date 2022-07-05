@@ -2,11 +2,17 @@ import { injectable } from "tsyringe";
 import { IResult, ResultMock } from "../../models/axios/Result";
 import { Group } from "../../models/states/Group";
 import { MyProfile } from "../../models/utils/MyProfile";
+import { paletteSelections } from "../../models/utils/PaletteSelection";
 import { Guid } from "../../utils/Guid";
 import { IGroupRepository } from "../Interfaces/IGroupRepository";
 
 @injectable()
 export class GroupRepositoryMock implements IGroupRepository {
+
+    GroupRepositoryMock() {
+
+    }
+
     GetGroup(profile: MyProfile, id: string): Promise<IResult<Group>> {
         return new Promise((resolve) => {
             var list = this.List()
@@ -26,9 +32,14 @@ export class GroupRepositoryMock implements IGroupRepository {
     private List(): Array<Group> {
         const groupHeader = "group";
         const GroupMock: Array<Group> = [
-            { GroupId: Guid.GetSpecifyGuid(groupHeader, 1), Name: "My Group", Color: "#043bb9", OrganizationId: "1"  },
-            { GroupId: Guid.GetSpecifyGuid(groupHeader, 2), Name: "Search Department", Color: "#25b158", OrganizationId: "1"  },
-            { GroupId: Guid.GetSpecifyGuid(groupHeader, 3), Name: "Analysis Department", Color: "#ddb158", OrganizationId: "2"  },
+            { GroupId: Guid.GetSpecifyGuid(groupHeader, 1), Name: "My Group", Description: "",
+                Color: paletteSelections[0].color, OrganizationId: "1", IsViewable: true, IsEditable: true, },
+            { GroupId: Guid.GetSpecifyGuid(groupHeader, 2), Name: "Search Department",  Description: "",
+                Color: paletteSelections[1].color, OrganizationId: "1", IsViewable: true, IsEditable: true,  },
+            { GroupId: Guid.GetSpecifyGuid(groupHeader, 3), Name: "Analysis Department 1", Description: "",
+                Color: paletteSelections[2].color, OrganizationId: "2", IsViewable: true, IsEditable: false, },
+            { GroupId: Guid.GetSpecifyGuid(groupHeader, 4), Name: "Analysis Department 2", Description: "",
+                Color: paletteSelections[2].color, OrganizationId: "2", IsViewable: false, IsEditable: false, },
         ]
         return GroupMock;
     }

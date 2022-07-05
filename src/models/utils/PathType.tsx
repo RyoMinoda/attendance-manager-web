@@ -11,6 +11,7 @@ export const Path = {
     ServiceTop: "",
     SignIn: "sign_in",
     SignUp: "sign_up",
+    SignOut: "sign_out",
     MyAccount: "my_account",
     DashboardTop: "dashboard",
     GroupTop: "groups",
@@ -40,7 +41,8 @@ const textKeyValues: Array<KeyValue<string>> = [
     { key: Path.MyAccount, value: "My Account" },
     { key: Path.GroupTop, value: "Group" },
     { key: Path.GroupDetail, value: "" },
-    { key: Path.CreateGroup, value: "Create Group" }
+    { key: Path.CreateGroup, value: "Create Group" },
+    { key: Path.MyAccount, value: "My Account" }
 ];
 
 export const PathTextDictionary = new Dictionary(textKeyValues);

@@ -1,3 +1,5 @@
+import { Palette } from "./Palette";
+
 export type PaletteSelection = {
     color: string,
     name: string,
@@ -31,4 +33,14 @@ export const getSelectionColor = (name: string): string => {
     const target = paletteSelections.filter(x => x.color === name);
     if (target.length > 0) return target[0].color;
     return "#ffffff";
+}
+
+export const getTextColorBySelectionColor = (color: string, Palette: Palette): string => {
+    const target = paletteSelections.filter(x => x.color === color);
+    if (target.length > 0) {
+        if (target[0].isDarkColor) {
+            return Palette.background.component;
+        }
+    }
+    return Palette.text.primary;
 }

@@ -7,6 +7,7 @@ import TopLogoButton, { TopLogoButtonProps } from "../../atoms/buttons/TopLogoBu
 import TopBarButton, { TopBarButtonProps } from "../../atoms/buttons/TopBarButton";
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Path } from "../../../models/utils/PathType";
 
 const MemberBar = () => {
     const uiParameter = useContext(UiParametersContext);
@@ -24,18 +25,18 @@ const MemberBar = () => {
         width: textButtonXs / totalColumn * WindowLayout.width,
         height: Layout.TopBarHeight - 2,
         icon: <></>,
-        link: "",
+        path: Path.DashboardTop,
     }
-    const signInButtonProps: TopBarButtonProps = {
-        ...commonProps, text: "MY ACCOUNT", icon: <PersonIcon />
+    const myAccountButtonProps: TopBarButtonProps = {
+        ...commonProps, text: "MY ACCOUNT", icon: <PersonIcon />, path: Path.MyAccount,
     }
     const signUpButtonProps: TopBarButtonProps = {
-        ...commonProps, text: "SIGN OUT", icon: <LogoutIcon />
+        ...commonProps, text: "SIGN OUT", icon: <LogoutIcon />, path: Path.SignOut,
     }
     const gridItems: Array<GridColumnItem> = [
         { column: topLogoXs, totalColumn, children: <TopLogoButton props={topLogoButtonProps} /> },
         { column: totalColumn - topLogoXs - textButtonXs * 2 - 0.2, totalColumn, children: <></> },
-        { column: textButtonXs, totalColumn, children: <TopBarButton props={signInButtonProps} /> },
+        { column: textButtonXs, totalColumn, children: <TopBarButton props={myAccountButtonProps} /> },
         { column: textButtonXs, totalColumn, children: <TopBarButton props={signUpButtonProps} /> }
     ]
     return (

@@ -24,7 +24,7 @@ const GuestBar = () => {
         width: textButtonXs / totalColumn * WindowLayout.width,
         height: Layout.TopBarHeight - 2,
         icon: <></>,
-        link: "",
+        path: "",
     }
     const signInButtonProps: TopBarButtonProps = {
         ...commonProps, text: "SIGN IN", icon: <LoginIcon />
