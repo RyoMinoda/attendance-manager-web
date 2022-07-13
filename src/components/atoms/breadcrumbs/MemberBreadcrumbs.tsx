@@ -44,7 +44,6 @@ export const MemberBreadcrumbs = ({ props }: { props: MemberBreadcrumbsProps }) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [groupId]);
 
-    console.log(linkState);
     return (
         <Grid container>
             <Grid item xs={12} sx={{ borderBottom: 'solid 1px', borderBottomColor: Palette.primary.light }}>

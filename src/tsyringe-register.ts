@@ -9,6 +9,7 @@ import { IMemberRepository } from "./repositories/Interfaces/IMemberRepository";
 import { IOrganizationRepository } from "./repositories/Interfaces/IOrganizationRepository";
 import { IScheduleRepository } from "./repositories/Interfaces/IScheduleRepository";
 import { ITimelineRepository } from "./repositories/Interfaces/ITimelineRepository";
+import { IUserDetailRepository } from "./repositories/Interfaces/IUserDetailRepository";
 import { InvitationRepository } from "./repositories/InvitationRepository";
 import { MemberRepository } from "./repositories/MemberRepository";
 import { AttendanceRepositoryMock } from "./repositories/mock/AttendanceRepositoryMock";
@@ -18,9 +19,11 @@ import { MemberRepositoryMock } from "./repositories/mock/MemberRepositoryMock";
 import { OrganizationRepositoryMock } from "./repositories/mock/OrganizationRepositoryMock";
 import { ScheduleRepositoryMock } from "./repositories/mock/ScheduleRepositoryMock";
 import { TimelineRepositoryMock } from "./repositories/mock/TimelineRepositoryMock";
+import { UserDetailRepositoryMock } from "./repositories/mock/UserDetailRepositoryMock";
 import { OrganizationRepository } from "./repositories/OrganizationRepository";
 import { ScheduleRepository } from "./repositories/ScheduleRepository";
 import { TimelineRepository } from "./repositories/TimelineRepository";
+import { UserDetailRepository } from "./repositories/UserDetailRepository";
 
 container.clearInstances();
 container.register<IMemberRepository>(MemberRepository, { useClass: MemberRepositoryMock });
@@ -30,3 +33,4 @@ container.register<ITimelineRepository>(TimelineRepository, { useClass: Timeline
 container.register<IAttendanceRepository>(AttendanceRepository, { useClass: AttendanceRepositoryMock });
 container.register<IOrganizationRepository>(OrganizationRepository, { useClass: OrganizationRepositoryMock });
 container.register<IInvitationRepository>(InvitationRepository, { useClass: InvitationRepositoryMock });
+container.register<IUserDetailRepository>(UserDetailRepository, { useClass: UserDetailRepositoryMock });

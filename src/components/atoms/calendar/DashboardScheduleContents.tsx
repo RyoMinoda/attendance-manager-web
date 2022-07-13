@@ -1,5 +1,5 @@
 import { Box, Grid, SxProps, Theme, Typography } from "@mui/material";
-import { useCallback, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Schedule } from "../../../models/states/Schedule";
 import { UiParametersContext } from "../../../models/utils/UiParametersContext";
 import { getDigitNumber } from "../../../utils/DigitNumber";

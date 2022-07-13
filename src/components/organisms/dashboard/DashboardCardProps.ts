@@ -1,3 +1,4 @@
+import { Schedule } from "../../../models/states/Schedule"
 
 export type DashboardCardProps = {
     width: number,
@@ -8,4 +9,6 @@ export type DashboardCardProps = {
     headerMarginLeft: number,
     innerContainerTopBottomMargin: number,
     innerContainerLeftRightMargin: number,
+    schedules: Array<Schedule>,
+    setSchedules: React.Dispatch<React.SetStateAction<Schedule[]>>
 }

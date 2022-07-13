@@ -16,7 +16,18 @@ export class DateObj {
         this.date = new Date(this.date.getFullYear(), 
             this.date.getMonth(), 
             this.date.getDate(), 
-            this.date.getHours() + hour,
+            hour,
+        );
+        return this;
+    }
+
+    addMinute(m: number): DateObj {
+        const minutes: number = this.date.getMinutes() + m;
+        this.date = new Date(this.date.getFullYear(), 
+            this.date.getMonth(), 
+            this.date.getDate(), 
+            this.date.getHours(),
+            minutes
         );
         return this;
     }

@@ -106,7 +106,7 @@ const DashboardScheduleCalendar = ({ props }: { props: DashboardScheduleCalendar
                                             justifyContent="center"
                                             alignItems="center"
                                             key={"weekday" + i} 
-                                            width={weekdayWidth - 1} 
+                                            width={weekdayWidth - 1.5} 
                                             height={weekdayHeight} 
                                             sx={{ fontSize: FontSize.smaller, color: Palette.text.secondary }}>
                                             {x}

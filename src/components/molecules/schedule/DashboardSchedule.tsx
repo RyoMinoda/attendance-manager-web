@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Schedule } from "../../../models/states/Schedule";
 import { DashboardPeriodType } from "../../atoms/button_group/enums/DashboardPeriodType";
 import DashboardScheduleCalendar, { DashboardScheduleCalendarProps } from "../../atoms/calendar/DashboardScheduleCalendar";

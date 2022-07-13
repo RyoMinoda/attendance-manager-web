@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { container } from "tsyringe";
 import { Attendance } from "../../../models/states/Attendance";
 import { Schedule } from "../../../models/states/Schedule";
-import { defaultTimeline, Timeline } from "../../../models/states/Timeline";
+import { Timeline } from "../../../models/states/Timeline";
 import { UserParametersContext } from "../../../models/utils/UserParametersContext";
 import { AttendanceRepository } from "../../../repositories/AttendanceRepository";
 import { ScheduleRepository } from "../../../repositories/ScheduleRepository";

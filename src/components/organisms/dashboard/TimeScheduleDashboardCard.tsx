@@ -1,9 +1,5 @@
 import { Card, Grid,Typography } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
-import { container } from "tsyringe";
-import { Schedule } from "../../../models/states/Schedule";
-import { UserParametersContext } from "../../../models/utils/UserParametersContext";
-import { ScheduleRepository } from "../../../repositories/ScheduleRepository";
+import { useState } from "react";
 import { DashboardPeriod, DashboardPeriodType } from "../../atoms/button_group/enums/DashboardPeriodType";
 import PeriodSwitchButtonGroup, { PeriodSwitchButtonGroupProps } from "../../atoms/button_group/PeriodSwitchButtonGroup";
 import DashboardSchedule, { DashboardScheduleProps } from "../../molecules/schedule/DashboardSchedule";
@@ -11,26 +7,14 @@ import { DashboardCardProps } from "./DashboardCardProps";
 
 
 const TimeScheduleDashboardCard = ({ props }: { props: DashboardCardProps }) => {
+    const { width, height, headerHeight, gridMarginTB, headerFontSize, schedules, 
+        headerMarginLeft, innerContainerTopBottomMargin } = props;
     const [ period, setPeriod ] = useState<DashboardPeriodType>(DashboardPeriod.Day);
     const [ date, setDate ] = useState<Date>(new Date());
-    const [ error, setError ] = useState<boolean>(false);
-    const { MyProfile } = useContext(UserParametersContext);
-    const [ schedules, setSchedules ] = useState<Array<Schedule>>(Array<Schedule>());
+
     const setTargetDate = (date: Date) => {
         setDate(date);
     }
-    useEffect(() => {
-        const scheduleRepository = container.resolve(ScheduleRepository);
-        const schedulesResult = scheduleRepository.GetSchedules(MyProfile);
-        schedulesResult.then((result) => {
-            if(result.Data != null) {
-                setSchedules(result.Data);
-            }
-        }).catch(() => {
-            setError(true);
-        });
-    }, [ MyProfile ]);
-    const { width, height, headerHeight, gridMarginTB, headerFontSize, headerMarginLeft, innerContainerTopBottomMargin } = props;
     const buttonGroupSx = 3;
     const containerHeight = height - 2 * gridMarginTB * 8;
     const contentHeight = containerHeight - headerHeight;

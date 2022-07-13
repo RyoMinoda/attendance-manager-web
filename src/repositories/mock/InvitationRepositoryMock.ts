@@ -14,8 +14,8 @@ export class InvitationRepositoryMock implements IInvitationRepository {
 
     private GetList(): Array<Invitation> {
         const mock: Array<Invitation> = [
-            { InvitationId: "1", GroupId: Guid.GetSpecifyGuid("group", 1), InvitedBy: "John Nicol", IsAccepted: false  },
-            { InvitationId: "2", GroupId: Guid.GetSpecifyGuid("group", 2), InvitedBy: "John Nicol", IsAccepted: true  },
+            { InvitationId: "1", GroupId: Guid.GetSpecifyGuid("group", 1), InvitedBy: "John Nicol", IsAccepted: false, GroupName: "Contoso University"  },
+            { InvitationId: "2", GroupId: Guid.GetSpecifyGuid("group", 2), InvitedBy: "John Nicol", IsAccepted: true, GroupName: "Palkia Company"  },
         ];
         return mock;
     }

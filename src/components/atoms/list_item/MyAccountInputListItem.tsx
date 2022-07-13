@@ -1,15 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { useContext } from "react";
-import { UiParametersContext } from "../../../models/utils/UiParametersContext";
 
 export type MyAccountInputListItemProps = {
     width: number,
     height: number,
     title: string,
     titleWidth: number,
-    fontSize: number,
+    fontSize: number
 }
-
 
 const MyAccountInputListItem = ({ props, children }: { props: MyAccountInputListItemProps, children: React.ReactNode }) => {
     const { width, height, title, titleWidth, fontSize } = props;

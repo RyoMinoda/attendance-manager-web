@@ -26,6 +26,7 @@ export type Palette = {
     },
     shadow: {
         light: string,
+        main: string,
     },
     selection: Array<PaletteSelection>,
     getSelectionColor: (color: string) => string,
@@ -57,7 +58,8 @@ export const defaultPalette: Palette = {
         light: '#CCCCCC',
     },
     shadow: {
-        light: '#EEEEEE'
+        light: '#EEEEEE',
+        main: '#BBBBBB',
     },
     selection: paletteSelections,
     getSelectionColor

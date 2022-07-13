@@ -11,9 +11,10 @@ import { UiParametersContext } from "../models/utils/UiParametersContext";
 import { UserParametersContext } from "../models/utils/UserParametersContext";
 import { useWindowSize } from "../models/utils/WindowLayout";
 import { InvitationRepository } from "../repositories/InvitationRepository";
+import { UserDetailRepository } from "../repositories/UserDetailRepository";
 
 const MyAccount = () => {
-    const { height, type, width } = useWindowSize();
+    const { height, width } = useWindowSize();
     const { MyProfile } = useContext(UserParametersContext);
     const { Layout } = useContext(UiParametersContext);
     const [ error, setError ] = useState(false);
@@ -25,16 +26,17 @@ const MyAccount = () => {
         breadcrumbLinks: [ Path.DashboardTop, Path.MyAccount ],
         height: entireHeight
     }
-    const titleHeight = 30;
-    const titleMarginLeft = 2;
+    const titleHeight = 45;
+    const titleMarginLeft = 3;
+    const titleContentSpace = 2;
     const myProfileViewProps: MyProfileViewProps = {
-        width: Layout.MainAreaWidth, height: 800,
-        titleHeight, titleMarginLeft, userDetail
+        width: Layout.MainAreaWidth, titleContentSpace, height: 700,
+        titleHeight, titleMarginLeft, userDetail,
     }
-    const invitationHeight = 80;
+    const invitationHeight = 90;
     const myInvitationsProps: MyInvitationsProps = {
         width: Layout.MainAreaWidth, titleHeight,
-        marginTopBottom: 2,
+        marginTopBottom: 2, titleContentSpace,
         itemHeight: invitationHeight,
         invitations, titleMarginLeft,
     }
@@ -42,6 +44,15 @@ const MyAccount = () => {
         setEntireHeight(height);
 
         const invitationRepository = container.resolve(InvitationRepository);
+        const userDetailRepository = container.resolve(UserDetailRepository);
+        const userDetailPromise = userDetailRepository.GetUserDetail(MyProfile);
+        userDetailPromise.then((result) => {
+            if (result.Data !== null) {
+                setUserDetail(result.Data);
+            }
+        }).catch(() => {
+            setError(true);
+        });
         const invitationPromise = invitationRepository.GetInvitations(MyProfile);
         invitationPromise.then((result) => {
             if (result.Data !== null) {
@@ -55,7 +66,7 @@ const MyAccount = () => {
 
     return (
         <MemberLayout props={memberLayoutProps}>
-            <Box width={Layout.MainAreaWidth} marginLeft={marginSide}>
+            <Box width={Layout.MainAreaWidth} marginLeft={marginSide} marginBottom={Layout.PageMarginBottom}>
                 <Grid container marginTop={2} marginBottom={Layout.PageMarginBottom}>
                     <Grid item>
                         <MyProfileView props={myProfileViewProps} /> 

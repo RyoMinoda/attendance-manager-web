@@ -32,6 +32,7 @@ export class ScheduleRepositoryMock implements IScheduleRepository {
             { ScheduleId: "4", Name: "Electromagnetism II", TimelineId: "2", ScheduleFor: dateTime.setTime(15, 0).addHour(2).getDate(), MinuteSpan: 50, ...common },
             { ScheduleId: "5", Name: "Physical Chemistry", TimelineId: "3", ScheduleFor: dateTime.addDay(2).setTime(10, 0).getDate(), MinuteSpan: 50, ...common },
             { ScheduleId: "6", Name: "Analytic Geometry", TimelineId: "4", ScheduleFor: dateTime.addDay(3).setTime(11, 0).getDate(), MinuteSpan: 50, ...common},
+            { ScheduleId: "8", Name: "Coming Soon Schedule", TimelineId: "", ScheduleFor: dateTime.addMinute(10).getDate(), MinuteSpan: 60, ...common }
         ];
         return list;
      }
