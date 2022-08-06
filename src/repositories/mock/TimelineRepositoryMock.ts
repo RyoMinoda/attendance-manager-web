@@ -1,11 +1,11 @@
 import { Result, ResultMock } from "../../models/axios/Result";
 import { Timeline } from "../../models/states/Timeline";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { DateObj } from "../../utils/DateObj";
 import { ITimelineRepository } from "../Interfaces/ITimelineRepository";
 
 export class TimelineRepositoryMock implements ITimelineRepository {
-    GetTimelines(profile: MyProfile): Promise<Result<Timeline[]>> {
+    GetTimelines(config: MyConfig): Promise<Result<Timeline[]>> {
         return new Promise((resolve) => {
             const result = new ResultMock(this.GetList());
             resolve(result);

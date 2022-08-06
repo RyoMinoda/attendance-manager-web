@@ -15,7 +15,7 @@ import { UserDetailRepository } from "../repositories/UserDetailRepository";
 
 const MyAccount = () => {
     const { height, width } = useWindowSize();
-    const { MyProfile } = useContext(UserParametersContext);
+    const { MyConfig } = useContext(UserParametersContext);
     const { Layout } = useContext(UiParametersContext);
     const [ error, setError ] = useState(false);
     const [ entireHeight, setEntireHeight ] = useState<number>(height);
@@ -45,7 +45,7 @@ const MyAccount = () => {
 
         const invitationRepository = container.resolve(InvitationRepository);
         const userDetailRepository = container.resolve(UserDetailRepository);
-        const userDetailPromise = userDetailRepository.GetUserDetail(MyProfile);
+        const userDetailPromise = userDetailRepository.GetUserDetail(MyConfig);
         userDetailPromise.then((result) => {
             if (result.Data !== null) {
                 setUserDetail(result.Data);
@@ -53,7 +53,7 @@ const MyAccount = () => {
         }).catch(() => {
             setError(true);
         });
-        const invitationPromise = invitationRepository.GetInvitations(MyProfile);
+        const invitationPromise = invitationRepository.GetInvitations(MyConfig);
         invitationPromise.then((result) => {
             if (result.Data !== null) {
                 setInvitations(result.Data);
@@ -62,7 +62,7 @@ const MyAccount = () => {
             setError(true);
         });
         
-    }, [MyProfile, height]);
+    }, [MyConfig, height]);
 
     return (
         <MemberLayout props={memberLayoutProps}>

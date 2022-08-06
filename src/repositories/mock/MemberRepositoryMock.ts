@@ -2,13 +2,13 @@ import "reflect-metadata";
 import { injectable } from "tsyringe";
 import { IResult, ResultMock } from "../../models/axios/Result";
 import { Member } from "../../models/states/Member";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { Guid } from "../../utils/Guid";
 import { IMemberRepository } from "../Interfaces/IMemberRepository";
 
 @injectable()
 export class MemberRepositoryMock implements IMemberRepository {
-    GetMembers(profile: MyProfile): Promise<IResult<Member[]>> {
+    GetMembers(config: MyConfig): Promise<IResult<Member[]>> {
         return new Promise((resolve) => {
             const result = new ResultMock(this.List());
             resolve(result);

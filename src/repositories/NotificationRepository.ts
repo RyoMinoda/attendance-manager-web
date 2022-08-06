@@ -1,32 +1,31 @@
-import "reflect-metadata";
 import axios, { AxiosResponse } from "axios";
-import { injectable} from "tsyringe";
+import { useEffect } from "react";
+import { injectable } from "tsyringe";
 import { APIURLFactory } from "../models/axios/APIURLFactory";
 import { ModelUnion } from "../models/axios/ModelType";
-import { Member } from "../models/states/Member";
-import { IMemberRepository } from "./Interfaces/IMemberRepository";
+import { IResult, Result } from "../models/axios/Result";
 import { RouteUnion } from "../models/axios/RouteType";
-import { Result } from "../models/axios/Result";
 import { MyConfig } from "../models/utils/MyConfig";
+import { INotificationRepository } from "./Interfaces/INotificationRepository";
 
 @injectable()
-export class MemberRepository implements IMemberRepository {
+export class NotificationRepository implements INotificationRepository {
     private urlFactory: APIURLFactory;
 
     constructor() {
-        this.urlFactory = new APIURLFactory(ModelUnion.Group);
+        this.urlFactory = new APIURLFactory(ModelUnion.Notification);
     }
 
-    GetMembers(config: MyConfig): Promise<Result<Member[]>> {
+    GetNotifications(config: MyConfig): Promise<IResult<Notification[]>> {
         const url = this.urlFactory.Create(RouteUnion.GetAll);
         return new Promise((resolve) => {
             axios
                 .get(url)
                 .then((data: AxiosResponse<any, any>) => {
-                    resolve(new Result<Array<Member>>(data));
+                    resolve(new Result<Array<Notification>>(data));
                 })
                 .catch((error: AxiosResponse<any, any>) => {
-                    resolve(new Result<Array<Member>>(error));
+                    resolve(new Result<Array<Notification>>(error));
                 });
         });
     }

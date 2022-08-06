@@ -1,7 +1,6 @@
 import { DashboardMembersFilterUnion } from "../../components/atoms/selector/enum/DashboardMembersFilterType";
 import { Group } from "./Group";
 
-
 export type Member = {
     MemberId: string,
     GroupIds: Array<string>,

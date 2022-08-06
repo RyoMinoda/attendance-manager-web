@@ -1,12 +1,12 @@
 import { Result, ResultMock } from "../../models/axios/Result";
 import { UserDetail } from "../../models/states/UserDetail";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { Color } from "../../models/utils/PaletteSelection";
 import { Guid } from "../../utils/Guid";
 import { IUserDetailRepository } from "../Interfaces/IUserDetailRepository";
 
 export class UserDetailRepositoryMock implements IUserDetailRepository {
-    GetUserDetail(profile: MyProfile): Promise<Result<UserDetail>> {
+    GetUserDetail(config: MyConfig): Promise<Result<UserDetail>> {
         return new Promise((resolve) => {
             const result = new ResultMock(this.GetItem());
             resolve(result);

@@ -1,7 +1,7 @@
 import { IResult } from "../../models/axios/Result";
 import { Member } from "../../models/states/Member";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 
 export interface IMemberRepository {
-    GetMembers(profile: MyProfile): Promise<IResult<Array<Member>>>;
+    GetMembers(config: MyConfig): Promise<IResult<Array<Member>>>;
 }

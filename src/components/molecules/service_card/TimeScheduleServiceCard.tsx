@@ -18,7 +18,7 @@ const TimeScheduleServiceCard = ({ props }: { props: TimeScheduleServiceCardProp
         <Box height={titleHeight + height} sx={{ marginLeft: marginLR, marginTop: marginTB, marginBottom: marginTB }}>
             <Grid container>
                 <Grid item sx={{ width, height: titleHeight - 15 }}>
-                    <Typography fontSize={FontSize.larger} fontWeight="bold">
+                    <Typography fontSize={FontSize.large} fontWeight="bold">
                         Create Time Schedule
                     </Typography>
                 </Grid>

@@ -36,7 +36,7 @@ const MyInvitationListItem = ({ props }: { props: MyInvitationListItemProps }) =
     const buttonSpace = 20;
     const joinProps: DefaultButtonProps = {
         width: buttonAreaWidth - buttonSpace * 2,
-        height: Layout.DefaultButtonHeight,
+        height: Layout.DefaultButtonHeight - 3,
         activeColor: Palette.primary.main,
         isActive: invitation.IsAccepted,
         text: "Join"
@@ -71,7 +71,7 @@ const MyInvitationListItem = ({ props }: { props: MyInvitationListItemProps }) =
                                 height={invitedByHeight}
                                 display="flex" justifyContent="flex-start" alignItems="center">
                                 <Typography fontSize={FontSize.normal} color={Palette.text.primary}>
-                                    by {invitation.InvitedBy}
+                                    {invitation.InvitedBy}
                                 </Typography>
                             </Grid>
                         </Grid>

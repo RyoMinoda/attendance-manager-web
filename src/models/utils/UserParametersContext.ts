@@ -1,14 +1,14 @@
 import { createContext } from "react";
 import { defaultMyCalendar, MyCalendar } from "./MyCalendar";
-import { defaultMyProfile, MyProfile } from "./MyProfile"
+import { defaultMyConfig, MyConfig } from "./MyConfig"
 
 export type IUserParametersContext = {
-    MyProfile: MyProfile,
+    MyConfig: MyConfig,
     MyCalendar: MyCalendar, 
 }
 
 export const defaultUserParameters: IUserParametersContext = {
-    MyProfile: defaultMyProfile,
+    MyConfig: defaultMyConfig,
     MyCalendar: defaultMyCalendar
 }
 

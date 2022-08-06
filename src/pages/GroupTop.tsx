@@ -24,7 +24,7 @@ const GroupTop = () => {
     const [ organizations, setOrganizations ] = useState<Array<Organization>>(Array<Organization>());
 
     const { Layout } = useContext(UiParametersContext);
-    const { MyProfile } = useContext(UserParametersContext);
+    const { MyConfig } = useContext(UserParametersContext);
 
     const memberLayoutProps: MemberLayoutProps = {
         breadcrumbLinks: [ Path.DashboardTop, Path.GroupTop ],
@@ -38,7 +38,7 @@ const GroupTop = () => {
         const memberRepository = container.resolve(MemberRepository);
         const groupRepository = container.resolve(GroupRepository);
         const organizationRepository = container.resolve(OrganizationRepository);
-        const membersPromise = memberRepository.GetMembers(MyProfile);
+        const membersPromise = memberRepository.GetMembers(MyConfig);
         membersPromise.then((result) => {
             if (result.Data !== null) {
                 setMembers(result.Data);
@@ -46,7 +46,7 @@ const GroupTop = () => {
         }).catch(() => {
             setError(true);
         });
-        const groupsPromise = groupRepository.GetGroups(MyProfile);
+        const groupsPromise = groupRepository.GetGroups(MyConfig);
         groupsPromise.then((result) => {
             if (result.Data !== null) {
                 setGroups(result.Data);
@@ -54,7 +54,7 @@ const GroupTop = () => {
         }).catch(() => {
             setError(true);
         });
-        const organizationPromise = organizationRepository.GetOrganizations(MyProfile);
+        const organizationPromise = organizationRepository.GetOrganizations(MyConfig);
         organizationPromise.then((result) => {
             if (result.Data !== null) {
                 setOrganizations(result.Data);
@@ -62,7 +62,7 @@ const GroupTop = () => {
         }).catch(() => {
             setError(true);
         })
-    }, [MyProfile, height]);
+    }, [MyConfig, height]);
 
     const mainWidth = Layout.MainAreaWidth;
     var marginSide = 0;

@@ -2,9 +2,8 @@ import { Box, Breadcrumbs, Grid, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { UiParametersContext } from "../../../models/utils/UiParametersContext";
 import { useWindowSize } from "../../../models/utils/WindowLayout";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PathTextDictionary } from "../../../models/utils/PathType";
-import { Group } from "../../../models/states/Group";
 import { container } from "tsyringe";
 import { GroupRepository } from "../../../repositories/GroupRepository";
 import { UserParametersContext } from "../../../models/utils/UserParametersContext";
@@ -13,13 +12,12 @@ export type MemberBreadcrumbsProps = {
     links: Array<string>;
 }
 
-
 export const MemberBreadcrumbs = ({ props }: { props: MemberBreadcrumbsProps }) => {
     const { links } = props;
     const uiParameters = useContext(UiParametersContext);
     const { Layout, Palette, FontSize } = uiParameters;
     const { groupId } = useParams();
-    const { MyProfile } = useContext(UserParametersContext);
+    const { MyConfig } = useContext(UserParametersContext);
     const [ linkState, setLinkState ] = useState(links);
 
     const windowSize = useWindowSize();
@@ -33,7 +31,7 @@ export const MemberBreadcrumbs = ({ props }: { props: MemberBreadcrumbsProps }) 
     useEffect(() => {
         if (groupId != null) {
             const groupRepository = container.resolve(GroupRepository);
-            const groupsPromise = groupRepository.GetGroup(MyProfile, groupId);
+            const groupsPromise = groupRepository.GetGroup(MyConfig, groupId);
             groupsPromise.then((result) => {
                 if (result.Data !== null) {
                     const target = [ ...links, result.Data.Name ];

@@ -1,11 +1,11 @@
 import { IResult, ResultMock } from "../../models/axios/Result";
 import { Attendance, AttendanceUnion } from "../../models/states/Attendance";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { DateObj } from "../../utils/DateObj";
 import { IAttendanceRepository } from "../Interfaces/IAttendanceRepository";
 
 export class AttendanceRepositoryMock implements IAttendanceRepository {
-    async GetAttendances(profile: MyProfile): Promise<IResult<Attendance[]>> {
+    async GetAttendances(config: MyConfig): Promise<IResult<Attendance[]>> {
         return new ResultMock(this.GetList());
     }
 

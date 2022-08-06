@@ -55,3 +55,35 @@ export const getButtonHoverAndActiveStyle4 = (Palette: Palette): SxProps<Theme> 
         }
     }
 }
+
+
+export const getButtonHoverAndActiveStyle5 = (Palette: Palette): SxProps<Theme> => {
+    return {
+        '&:hover': {
+            background: Palette.primary.main,
+            color: Palette.primary.light
+        },
+        '&:active': {
+            background: Palette.primary.main,
+            color: Palette.text.secondary,
+            boxShadow: 'none',
+        }
+    }
+}
+
+export const getButtonHoverAndActiveStyleByIndex = (Palette: Palette, index: number): SxProps<Theme> => {
+    switch (index) {
+        case 1:
+            return getButtonHoverAndActiveStyle(Palette);
+        case 2:
+            return getButtonHoverAndActiveStyle2(Palette);
+        case 3:
+            return getButtonHoverAndActiveStyle3(Palette);
+        case 4:
+            return getButtonHoverAndActiveStyle4(Palette);
+        case 5:
+            return getButtonHoverAndActiveStyle5(Palette);
+        default:
+            throw new Error("invalid hover style");
+    }
+}

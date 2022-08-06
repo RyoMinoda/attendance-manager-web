@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
 import { IResult, ResultMock } from "../../models/axios/Result";
 import { Group } from "../../models/states/Group";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { paletteSelections } from "../../models/utils/PaletteSelection";
 import { Guid } from "../../utils/Guid";
 import { IGroupRepository } from "../Interfaces/IGroupRepository";
@@ -13,7 +13,7 @@ export class GroupRepositoryMock implements IGroupRepository {
 
     }
 
-    GetGroup(profile: MyProfile, id: string): Promise<IResult<Group>> {
+    GetGroup(config: MyConfig, id: string): Promise<IResult<Group>> {
         return new Promise((resolve) => {
             var list = this.List()
                 .filter(x => x.GroupId === id);
@@ -22,7 +22,7 @@ export class GroupRepositoryMock implements IGroupRepository {
         });
     }
 
-    GetGroups(profile: MyProfile): Promise<IResult<Array<Group>>> {
+    GetGroups(config: MyConfig): Promise<IResult<Array<Group>>> {
         return new Promise((resolve) => {
             var list = new ResultMock(this.List());
             resolve(list);

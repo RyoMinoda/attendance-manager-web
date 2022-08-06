@@ -1,7 +1,7 @@
 import { IResult } from "../../models/axios/Result";
 import { Attendance } from "../../models/states/Attendance";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 
 export interface IAttendanceRepository {
-    GetAttendances(profile: MyProfile): Promise<IResult<Array<Attendance>>>
+    GetAttendances(profile: MyConfig): Promise<IResult<Array<Attendance>>>
 }

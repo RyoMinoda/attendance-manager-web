@@ -1,7 +1,7 @@
 import { IResult } from "../../models/axios/Result";
 import { Organization } from "../../models/states/Organization";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 
 export interface IOrganizationRepository {
-    GetOrganizations(profile: MyProfile): Promise<IResult<Array<Organization>>>;
+    GetOrganizations(config: MyConfig): Promise<IResult<Array<Organization>>>;
 }

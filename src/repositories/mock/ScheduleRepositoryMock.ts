@@ -1,11 +1,11 @@
 import { IResult, ResultMock } from "../../models/axios/Result";
 import { Schedule } from "../../models/states/Schedule";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { DateObj } from "../../utils/DateObj";
 import { IScheduleRepository } from "../Interfaces/IScheduleRepository";
 
 export class ScheduleRepositoryMock implements IScheduleRepository {
-    GetSchedules(profile: MyProfile): Promise<IResult<Schedule[]>> {
+    GetSchedules(pconfig: MyConfig): Promise<IResult<Schedule[]>> {
         return new Promise((resolve) => {
             const list = new ResultMock(this.GetList());
             resolve(list);

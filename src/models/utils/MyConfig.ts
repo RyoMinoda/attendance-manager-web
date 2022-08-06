@@ -1,4 +1,4 @@
-export type MyProfile = {
+export type MyConfig = {
     Id: string,
     Name: string,
     IsManager: boolean,
@@ -6,7 +6,7 @@ export type MyProfile = {
     UserPassword: string,
 }
 
-export const defaultMyProfile: MyProfile = {
+export const defaultMyConfig: MyConfig = {
     Id: "00000-00000-0000-0000001",
     Name: "",
     IsManager: true,

@@ -7,7 +7,7 @@ import MemberBar from "../molecules/top_bars/MemberBar";
 
 export type MemberLayoutProps = {
     breadcrumbLinks: Array<string>,
-    height: number,
+    height: number
 }
 
 const MemberLayout = ({ props, children }: { props: MemberLayoutProps, children: React.ReactNode }) => {
@@ -37,7 +37,6 @@ const MemberLayout = ({ props, children }: { props: MemberLayoutProps, children:
                 </Grid>
             </Grid>
         </Box>
-
     );
 }
 

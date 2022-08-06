@@ -2,11 +2,12 @@ import { Grid } from "@mui/material";
 import { useContext } from "react";
 import { GridColumnItem } from "../../../models/utils/GridItem";
 import { UiParametersContext } from "../../../models/utils/UiParametersContext";
-import TopBarButton, { TopBarButtonProps } from "../../atoms/buttons/TopBarButton";
 import TopLogoButton, { TopLogoButtonProps } from "../../atoms/buttons/TopLogoButton";
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { useWindowSize } from "../../../models/utils/WindowLayout";
+import { Path } from "../../../models/utils/PathType";
+import TopBarLinkButton, { TopBarLinkButtonProps } from "../../atoms/buttons/TopBarLinkButton";
 
 const GuestBar = () => {
     const uiParameter = useContext(UiParametersContext);
@@ -19,24 +20,24 @@ const GuestBar = () => {
         height: Layout.TopBarHeight
     }
     const textButtonXs = 1.5;
-    const commonProps: TopBarButtonProps = {
+    const commonProps: TopBarLinkButtonProps = {
         text: "",
         width: textButtonXs / totalColumn * WindowLayout.width,
         height: Layout.TopBarHeight - 2,
         icon: <></>,
-        path: "",
+        path: ""
     }
-    const signInButtonProps: TopBarButtonProps = {
-        ...commonProps, text: "SIGN IN", icon: <LoginIcon />
+    const signInButtonProps: TopBarLinkButtonProps = {
+        ...commonProps, text: "SIGN IN", icon: <LoginIcon />, path: Path.SignIn
     }
-    const signUpButtonProps: TopBarButtonProps = {
-        ...commonProps, text: "SIGN UP", icon: <PersonAddAlt1Icon />
+    const signUpButtonProps: TopBarLinkButtonProps = {
+        ...commonProps, text: "SIGN UP", icon: <PersonAddAlt1Icon />, path: Path.SignUp
     }
     const gridItems: Array<GridColumnItem> = [
         { column: topLogoXs, totalColumn, children: <TopLogoButton props={topLogoButtonProps} /> },
         { column: totalColumn - topLogoXs - textButtonXs * 2, totalColumn, children: <></> },
-        { column: textButtonXs, totalColumn, children: <TopBarButton props={signInButtonProps} /> },
-        { column: textButtonXs, totalColumn, children: <TopBarButton props={signUpButtonProps} /> }
+        { column: textButtonXs, totalColumn, children: <TopBarLinkButton props={signInButtonProps} /> },
+        { column: textButtonXs, totalColumn, children: <TopBarLinkButton props={signUpButtonProps} /> }
     ]
     return (
         <Grid container sx={{ height: Layout.TopBarHeight, background: Palette.primary.main, width: WindowLayout.width }}>

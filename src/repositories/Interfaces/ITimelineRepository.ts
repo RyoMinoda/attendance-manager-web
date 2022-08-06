@@ -1,7 +1,7 @@
 import { Result } from "../../models/axios/Result";
 import { Timeline } from "../../models/states/Timeline";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 
 export interface ITimelineRepository {
-    GetTimelines(profile: MyProfile): Promise<Result<Array<Timeline>>>;
+    GetTimelines(config: MyConfig): Promise<Result<Array<Timeline>>>;
 }

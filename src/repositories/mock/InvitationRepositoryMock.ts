@@ -1,11 +1,11 @@
 import { IResult, ResultMock } from "../../models/axios/Result";
 import { Invitation } from "../../models/states/Invitation";
 import { Guid } from "../../utils/Guid";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 import { IInvitationRepository } from "../Interfaces/IInvitationRepository";
 
 export class InvitationRepositoryMock implements IInvitationRepository {
-    GetInvitations(MyProfile: MyProfile): Promise<IResult<Invitation[]>> {
+    GetInvitations(config: MyConfig): Promise<IResult<Invitation[]>> {
         return new Promise((resolve) => {
             const result = new ResultMock(this.GetList());
             resolve(result);

@@ -26,7 +26,7 @@ const DashboardTop = () => {
     }
     const windowSize = useWindowSize();
     const { Layout, FontSize } = useContext(UiParametersContext);
-    const { MyProfile } = useContext(UserParametersContext);
+    const { MyConfig } = useContext(UserParametersContext);
     const sideMargin = 3;
     const marginTop = 3;
     const notificationHeight = 140;
@@ -74,7 +74,7 @@ const DashboardTop = () => {
         setScreenHeight(entireHeight);
 
         const scheduleRepository = container.resolve(ScheduleRepository);
-        const schedulesResult = scheduleRepository.GetSchedules(MyProfile);
+        const schedulesResult = scheduleRepository.GetSchedules(MyConfig);
         schedulesResult.then((result) => {
             if(result.Data != null) {
                 setSchedules(result.Data);
@@ -83,7 +83,7 @@ const DashboardTop = () => {
             setError(true);
         });
 
-    }, [MyProfile, entireHeight]);
+    }, [MyConfig, entireHeight]);
     const mainWidth = windowSize.width - 2 * outerSidePadding * 8;
     
     return (

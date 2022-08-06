@@ -1,12 +1,15 @@
 import { Box, Grid } from "@mui/material";
+import { useContext } from "react";
 import TimeScheduleServiceCard, { TimeScheduleServiceCardProps } from "../components/molecules/service_card/TimeScheduleServiceCard";
 import GuestLayout, { GuestLayoutProps } from "../components/templates/GuestLayout";
+import { UiParametersContext } from "../models/utils/UiParametersContext";
 import { useWindowSize } from "../models/utils/WindowLayout";
 
 
 const ServiceTop = () => {
     const WindowLayout = useWindowSize();
-    const mainWindowWidth = 900;
+    const { Layout } = useContext(UiParametersContext);
+    const mainWindowWidth = Layout.MainAreaWidth;
     const outerMarginLR = (WindowLayout.width - mainWindowWidth) / 8 / 2;
     const titleHeight = 45;
     const innerMarginTB = 5;

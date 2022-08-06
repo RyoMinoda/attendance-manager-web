@@ -20,13 +20,13 @@ const AttendanceDashboardCard = ({ props }: { props: DashboardCardProps }) => {
     const [ attendances, setAttendances ] = useState<Array<Attendance>>(Array<Attendance>());
     const [ timelineId, setTimelineId ] = useState<string>("");
     const [ error, setError ] = useState<boolean>(false);
-    const { MyProfile } = useContext(UserParametersContext);
+    const { MyConfig } = useContext(UserParametersContext);
     useEffect(() => {
         const scheduleRepository = container.resolve(ScheduleRepository);
         const attendanceRepository = container.resolve(AttendanceRepository);
         const timelineRepository = container.resolve(TimelineRepository);
 
-        const schedulesPromise = scheduleRepository.GetSchedules(MyProfile);
+        const schedulesPromise = scheduleRepository.GetSchedules(MyConfig);
         schedulesPromise.then((result) => {
             if (result.Data != null) {
                 setSchedules(result.Data);
@@ -34,7 +34,7 @@ const AttendanceDashboardCard = ({ props }: { props: DashboardCardProps }) => {
         }).catch(() => {
             setError(true);
         });
-        const timelinePromise = timelineRepository.GetTimelines(MyProfile);
+        const timelinePromise = timelineRepository.GetTimelines(MyConfig);
         timelinePromise.then((result) => {
             if (result.Data != null) {
                 setTimelines(result.Data);
@@ -45,7 +45,7 @@ const AttendanceDashboardCard = ({ props }: { props: DashboardCardProps }) => {
         }).catch(() => {
             setError(true);
         });
-        const attendancePromise = attendanceRepository.GetAttendances(MyProfile);
+        const attendancePromise = attendanceRepository.GetAttendances(MyConfig);
         attendancePromise.then((result) => {
             if (result.Data != null) {
                 setAttendances(result.Data);
@@ -54,7 +54,7 @@ const AttendanceDashboardCard = ({ props }: { props: DashboardCardProps }) => {
             setError(true);
         });
 
-    }, [ MyProfile ])
+    }, [ MyConfig ])
     const containerHeight = height - 2 * gridMarginTB * 8;
     const contentHeight = containerHeight - headerHeight;
     const innerContainerHeight = contentHeight - 2 * innerContainerTopBottomMargin * 8;

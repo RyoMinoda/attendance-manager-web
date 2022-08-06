@@ -23,7 +23,7 @@ const GroupDetail = () => {
     const [ members, setMembers ] = useState<Array<Member>>(Array<Member>());
     
     const { Layout } = useContext(UiParametersContext);
-    const { MyProfile } = useContext(UserParametersContext);
+    const { MyConfig } = useContext(UserParametersContext);
 
     const memberLayoutProps: MemberLayoutProps = {
         breadcrumbLinks: [ Path.DashboardTop, Path.GroupTop ],
@@ -47,7 +47,7 @@ const GroupDetail = () => {
 
         const memberRepository = container.resolve(MemberRepository);
         const groupRepository = container.resolve(GroupRepository);
-        const membersPromise = memberRepository.GetMembers(MyProfile);
+        const membersPromise = memberRepository.GetMembers(MyConfig);
         membersPromise.then((result) => {
             if (result.Data !== null) {
                 setMembers(result.Data);
@@ -55,7 +55,7 @@ const GroupDetail = () => {
         }).catch(() => {
             setError(true);
         });
-        const groupsPromise = groupRepository.GetGroups(MyProfile);
+        const groupsPromise = groupRepository.GetGroups(MyConfig);
         groupsPromise.then((result) => {
             if (result.Data !== null) {
                 setGroups(result.Data);
@@ -64,7 +64,7 @@ const GroupDetail = () => {
             setError(true);
         });
 
-    }, [MyProfile, height]);
+    }, [MyConfig, height]);
     return (
         <MemberLayout props={memberLayoutProps}>
             <Grid container>

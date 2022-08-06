@@ -1,7 +1,7 @@
 import { IResult } from "../../models/axios/Result";
 import { Invitation } from "../../models/states/Invitation";
-import { MyProfile } from "../../models/utils/MyProfile";
+import { MyConfig } from "../../models/utils/MyConfig";
 
 export interface IInvitationRepository {
-    GetInvitations(MyProfile: MyProfile): Promise<IResult<Array<Invitation>>>;
+    GetInvitations(config: MyConfig): Promise<IResult<Array<Invitation>>>;
 }
